@@ -1,9 +1,5 @@
-resource "aws_eip" "nat_primary" {
-	instance = "${aws_instance.nat-primary.id}"
-	vpc = true
-}
-
-resource "aws_eip" "nat_secondary" {
-	instance = "${aws_instance.nat-secondary.id}"
-	vpc = true
+resource "aws_eip" "mod_nat" {
+    count = "${var.az_count}"    
+    instance = "${element(aws_instance.nat.*.id, count.index)}"
+    vpc = true
 }

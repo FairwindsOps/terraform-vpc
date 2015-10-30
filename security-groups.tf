@@ -1,6 +1,6 @@
 # nat
 resource "aws_security_group" "nat" {
-	name = "nat"
+	name = "admin_nat"
 	description = "Allow services from the private subnet through NAT"
 	vpc_id = "${aws_vpc.default.id}"
 
@@ -78,11 +78,7 @@ resource "aws_security_group" "nat" {
 	}
 
 	tags {
-		Name = "${var.aws_vpc_name}-nat"
+		Name = "admin_nat"
 	}
 
-}
-
-output "aws_security_group_nat_id" {
-  value = "${aws_security_group.nat.id}"
 }

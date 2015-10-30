@@ -11,41 +11,15 @@ resource "aws_route_table" "public" {
     }
 }
 
-output "aws_route_table_public_id" {
-	value = "${aws_route_table.public.id}"
-}
-
-# Routing table for private primary subnets
-resource "aws_route_table" "private_primary" {
+# Routing table for private subnets
+resource "aws_route_table" "private" {
+  count = "${var.az_count}"
 	vpc_id = "${aws_vpc.default.id}"
-
 	route {
 		cidr_block = "0.0.0.0/0"
-		instance_id = "${aws_instance.nat-primary.id}"
+		instance_id = "${element(aws_instance.nat.*.id, count.index)}"
 	}
-    tags {
-        Name = "private_primary"
-    }
-
-}
-
-output "aws_route_table_private_primary_id" {
-	value = "${aws_route_table.private_primary.id}"
-}
-
-# Routing table for private secondary subnets
-resource "aws_route_table" "private_secondary" {
-	vpc_id = "${aws_vpc.default.id}"
-
-	route {
-		cidr_block = "0.0.0.0/0"
-		instance_id = "${aws_instance.nat-secondary.id}"
-	}
-    tags {
-        Name = "private_secondary"
-    }
-}
-
-output "aws_route_table_private_secondary_id" {
-	value = "${aws_route_table.private_secondary.id}"
+  tags {
+      Name = "private_az${(count.index +1)}"
+  }
 }
