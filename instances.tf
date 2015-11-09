@@ -1,7 +1,7 @@
 resource "aws_instance" "nat" {
 	count = "${var.az_count}"
 	ami = "${lookup(var.aws_nat_ami, var.aws_region)}"
-	instance_type = "t2.micro"
+	instance_type = "${var.nat_instance_type}"
 	key_name = "${var.nat_key_name}"
 	security_groups = ["${aws_security_group.nat.id}"]
 	subnet_id = "${element(aws_subnet.public.*.id, count.index)}"
