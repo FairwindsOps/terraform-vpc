@@ -47,6 +47,7 @@ module "vpc" {
   aws_azs = "${var.aws_azs}"
 
   network = "${var.network}"
-  nat_key_name = "${var.aws_key_name}"
+  nat_key_name = "${var.nat_key_name}"
+  nat_instance_type = "${var.nat_instance_type}"
 }
 ```
