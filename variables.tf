@@ -109,3 +109,7 @@ variable "aws_nat_ami" {
         sa-east-1 = "ami-8b72db96"
     }
 }
+
+variable "nat_instance_type" {
+    default = "t2.micro"
+}
