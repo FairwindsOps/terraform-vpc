@@ -111,12 +111,12 @@ variable "aws_nat_ami" {
 }
 
 variable "nat_instance_enabled" {
-    description = "set to 1 to create nat ec2 instances"
+    description = "set to 1 to create nat ec2 instances for private subnets"
     default = 0
 }
 
 variable "nat_gateway_enabled" {
-    description = "set to 1 to create nat gateway instances"
+    description = "set to 1 to create nat gateway instances for private subnets"
     default = 0
 }
 
