@@ -11,13 +11,14 @@ resource "aws_route_table" "public" {
     }
 }
 
-# Routing table for private subnets
+# Routing table for private subnets with nat instances
 resource "aws_route_table" "private" {
   count = "${var.az_count}"
 	vpc_id = "${aws_vpc.default.id}"
 	route {
 		cidr_block = "0.0.0.0/0"
 		instance_id = "${element(aws_instance.nat.*.id, count.index)}"
+    nat_gateway_id = "${element(aws_nat_gateway.nat_gateway.*.id, count.index)}"
 	}
   tags {
       Name = "private_az${(count.index +1)}"
