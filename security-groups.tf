@@ -1,5 +1,6 @@
 # nat
 resource "aws_security_group" "nat" {
+  count = "${var.nat_instance_enabled}"
 	name = "admin_nat"
 	description = "Allow services from the private subnet through NAT"
 	vpc_id = "${aws_vpc.default.id}"
@@ -9,7 +10,8 @@ resource "aws_security_group" "nat" {
 }
 
 resource "aws_security_group_rule" "nat_allow_http_to_world" {
-  type = "egress" 
+  count = "${var.nat_instance_enabled}"
+  type = "egress"
   from_port = 80
   to_port = 80
   protocol = "tcp"
@@ -18,7 +20,8 @@ resource "aws_security_group_rule" "nat_allow_http_to_world" {
 }
 
 resource "aws_security_group_rule" "nat_allow_https_to_world" {
-  type = "egress" 
+  count = "${var.nat_instance_enabled}"
+  type = "egress"
   from_port = 443
   to_port = 443
   protocol = "tcp"
@@ -27,7 +30,8 @@ resource "aws_security_group_rule" "nat_allow_https_to_world" {
 }
 
 resource "aws_security_group_rule" "nat_allow_ntp_to_world" {
-  type = "egress" 
+  count = "${var.nat_instance_enabled}"
+  type = "egress"
   from_port = 123
   to_port = 123
   protocol = "tcp"
@@ -36,7 +40,8 @@ resource "aws_security_group_rule" "nat_allow_ntp_to_world" {
 }
 
 resource "aws_security_group_rule" "nat_allow_git_to_github" {
-  type = "egress" 
+  count = "${var.nat_instance_enabled}"
+  type = "egress"
   from_port = 9418
   to_port = 9418
   protocol = "tcp"
@@ -45,7 +50,8 @@ resource "aws_security_group_rule" "nat_allow_git_to_github" {
 }
 
 resource "aws_security_group_rule" "nat_allow_ssh_to_github" {
-  type = "egress" 
+  count = "${var.nat_instance_enabled}"
+  type = "egress"
   from_port = 22
   to_port = 22
   protocol = "tcp"
@@ -54,7 +60,8 @@ resource "aws_security_group_rule" "nat_allow_ssh_to_github" {
 }
 
 resource "aws_security_group_rule" "nat_allow_ping_to_world" {
-  type = "egress" 
+  count = "${var.nat_instance_enabled}"
+  type = "egress"
   from_port = -1
   to_port = -1
   protocol = "icmp"
@@ -63,7 +70,8 @@ resource "aws_security_group_rule" "nat_allow_ping_to_world" {
 }
 
 resource "aws_security_group_rule" "nat_allow_ping_from_world" {
-  type = "ingress" 
+  count = "${var.nat_instance_enabled}"
+  type = "ingress"
   from_port = -1
   to_port = -1
   protocol = "icmp"
@@ -72,7 +80,8 @@ resource "aws_security_group_rule" "nat_allow_ping_from_world" {
 }
 
 resource "aws_security_group_rule" "nat_allow_all_tcp_traffic_from_vpc" {
-  type = "ingress" 
+  count = "${var.nat_instance_enabled}"
+  type = "ingress"
   from_port = 1
   to_port = 65535
   protocol = "tcp"
@@ -81,7 +90,8 @@ resource "aws_security_group_rule" "nat_allow_all_tcp_traffic_from_vpc" {
 }
 
 resource "aws_security_group_rule" "nat_allow_all_udp_traffic_from_vpc" {
-  type = "ingress" 
+  count = "${var.nat_instance_enabled}"
+  type = "ingress"
   from_port = 1
   to_port = 65535
   protocol = "udp"

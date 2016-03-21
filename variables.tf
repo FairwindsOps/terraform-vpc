@@ -86,7 +86,7 @@ variable "private_working_subnet_cidrs" {
 
 variable "aws_ubuntu_ami" {
     default = {
-        us-east-1 = "ami-d05e75b8" 
+        us-east-1 = "ami-d05e75b8"
         us-west-1 = "ami-736e6536"
         us-west-2 = "ami-37501207"
         ap-northeast-1 = "ami-df4b60de"
@@ -108,6 +108,16 @@ variable "aws_nat_ami" {
         eu-west-1 = "ami-5b60b02c"
         sa-east-1 = "ami-8b72db96"
     }
+}
+
+variable "nat_instance_enabled" {
+    description = "set to 1 to create nat ec2 instances for private subnets"
+    default = 0
+}
+
+variable "nat_gateway_enabled" {
+    description = "set to 1 to create nat gateway instances for private subnets"
+    default = 0
 }
 
 variable "nat_instance_type" {

@@ -1,5 +1,5 @@
 resource "aws_instance" "nat" {
-	count = "${var.az_count}"
+	count = "${var.az_count * var.nat_instance_enabled}"
 	ami = "${lookup(var.aws_nat_ami, var.aws_region)}"
 	instance_type = "${var.nat_instance_type}"
 	key_name = "${var.nat_key_name}"
