@@ -1,7 +1,6 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "aws_region" {}
-variable "nat_key_name" {}
 
 variable "org_name" {}
 
@@ -122,4 +121,8 @@ variable "nat_gateway_enabled" {
 
 variable "nat_instance_type" {
     default = "t2.micro"
+}
+
+variable "nat_key_name" {
+    default = ""
 }
