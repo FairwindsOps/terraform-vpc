@@ -21,6 +21,22 @@ variable "vpc_cidr_base" {
   default = "10.10"
 }
 
+variable "vpc_instance_tenancy" {
+  default = "default"
+}
+
+variable "vpc_enable_dns_support" {
+  default = "true"
+}
+
+variable "vpc_enable_dns_hostnames" {
+  default = "true"
+}
+
+variable "vpc_enable_classiclink" {
+  default = "false"
+}
+
 variable "admin_subnet_parent_cidr" {
   description = "parent CIDR for the administrative subnets"
   default = ".0.0/19"
