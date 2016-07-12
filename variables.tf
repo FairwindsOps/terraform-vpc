@@ -19,7 +19,7 @@ variable "az_count" {
   default = "3"
 }
 
-variable "network" {
+variable "vpc_cidr_base" {
   default = "10.10"
 }
 

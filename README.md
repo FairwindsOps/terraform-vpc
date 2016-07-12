@@ -37,7 +37,7 @@ variable "aws_region" {}
 variable "aws_azs" {}
 variable "az_count" {}
 
-variable "network" {}
+variable "vpc_cidr_base" {}
 variable "org_name" {}
 
 variable "nat_instance_enabled" {}
@@ -52,7 +52,7 @@ aws_azs = "us-west-2a, us-west-2b, us-west-2c, us-west-2d"
 az_count = 3
 nat_instance_enabled = 0
 nat_gateway_enabled = 1
-network = "10.0"
+vpc_cidr_base = "10.0"
 org_name = "reactr"
 ```
 
@@ -70,7 +70,7 @@ module "vpc" {
   az_count =  "${var.az_count}"
   aws_azs = "${var.aws_azs}"
 
-  network = "${var.network}"
+  vpc_cidr_base = "${var.vpc_cidr_base}"
 
   nat_instance_enabled = "${var.nat_instance_enabled}"
   nat_gateway_enabled = "${var.nat_gateway_enabled}"
