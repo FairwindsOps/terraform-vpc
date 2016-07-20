@@ -37,8 +37,7 @@ variable "aws_region" {}
 variable "aws_azs" {}
 variable "az_count" {}
 
-variable "network" {}
-variable "org_name" {}
+variable "vpc_cidr_base" {}
 
 variable "nat_instance_enabled" {}
 variable "nat_gateway_enabled" {}
@@ -52,8 +51,7 @@ aws_azs = "us-west-2a, us-west-2b, us-west-2c, us-west-2d"
 az_count = 3
 nat_instance_enabled = 0
 nat_gateway_enabled = 1
-network = "10.0"
-org_name = "reactr"
+vpc_cidr_base = "10.0"
 ```
 
 * Include this in your main.tf:
@@ -61,7 +59,6 @@ org_name = "reactr"
 ```
 module "vpc" {
   source = "./modules/terraform-vpc"
-  org_name = "${var.org_name}"
 
   aws_access_key = "${var.aws_access_key}"
   aws_secret_key = "${var.aws_secret_key}"
@@ -70,7 +67,7 @@ module "vpc" {
   az_count =  "${var.az_count}"
   aws_azs = "${var.aws_azs}"
 
-  network = "${var.network}"
+  vpc_cidr_base = "${var.vpc_cidr_base}"
 
   nat_instance_enabled = "${var.nat_instance_enabled}"
   nat_gateway_enabled = "${var.nat_gateway_enabled}"

@@ -1,12 +1,12 @@
 # nat
 resource "aws_security_group" "nat" {
   count = "${var.nat_instance_enabled}"
-	name = "admin_nat"
-	description = "Allow services from the private subnet through NAT"
-	vpc_id = "${aws_vpc.default.id}"
-	tags {
-		Name = "admin_nat"
-	}
+  name = "admin_nat"
+  description = "Allow services from the private subnet through NAT"
+  vpc_id = "${aws_vpc.default.id}"
+  tags {
+    Name = "admin_nat"
+  }
 }
 
 resource "aws_security_group_rule" "nat_allow_http_to_world" {
