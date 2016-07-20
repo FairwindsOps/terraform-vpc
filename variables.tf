@@ -99,14 +99,14 @@ variable "private_working_subnet_cidrs" {
 
 variable "aws_nat_ami" {
   default = {
-      us-east-1 = "ami-4868ab25"
-      us-west-1 = "ami-004b0f60"
-      us-west-2 = "ami-a275b1c2"
-      ap-northeast-1 = "ami-2443b745"
-      ap-southeast-1 = "ami-a79b49c4"
-      ap-southeast-2 = "ami-53371f30"
-      eu-west-1 = "ami-a8dd45db"
-      sa-east-1 = "ami-9336bcff"
+    us-east-1 = "ami-4868ab25"
+    us-west-1 = "ami-004b0f60"
+    us-west-2 = "ami-a275b1c2"
+    ap-northeast-1 = "ami-2443b745"
+    ap-southeast-1 = "ami-a79b49c4"
+    ap-southeast-2 = "ami-53371f30"
+    eu-west-1 = "ami-a8dd45db"
+    sa-east-1 = "ami-9336bcff"
   }
 }
 
