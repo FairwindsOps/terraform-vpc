@@ -8,7 +8,7 @@ resource "aws_subnet" "admin" {
   cidr_block = "${var.vpc_cidr_base}${lookup(var.admin_subnet_cidrs, concat("zone", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
   tags {
-      Name = "admin_az${(count.index + 1)}"
+    Name = "admin_az${(count.index + 1)}"
   }
 }
 
@@ -28,7 +28,7 @@ resource "aws_subnet" "public" {
   cidr_block = "${var.vpc_cidr_base}${lookup(var.public_subnet_cidrs, concat("zone", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
   tags {
-      Name = "public_az${(count.index + 1)}"
+    Name = "public_az${(count.index + 1)}"
   }
 }
 
@@ -48,7 +48,7 @@ resource "aws_subnet" "private_prod" {
   cidr_block = "${var.vpc_cidr_base}${lookup(var.private_prod_subnet_cidrs, concat("zone", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
   tags {
-      Name = "private_prod_az${(count.index + 1)}"
+    Name = "private_prod_az${(count.index + 1)}"
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_subnet" "private_working" {
   cidr_block = "${var.vpc_cidr_base}${lookup(var.private_working_subnet_cidrs, concat("zone", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
   tags {
-      Name = "private_working_az${(count.index + 1)}"
+    Name = "private_working_az${(count.index + 1)}"
   }
 }
 
