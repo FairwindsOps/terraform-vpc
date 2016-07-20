@@ -8,6 +8,6 @@ resource "aws_instance" "nat" {
 	associate_public_ip_address = true
 	source_dest_check = false
 	tags {
-		Name = "admin-nat-az${(count.index + 1)}"
+		Name = "admin_nat_az${(count.index + 1)}"
 	}
 }
