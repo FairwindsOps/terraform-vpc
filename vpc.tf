@@ -4,13 +4,13 @@ resource "aws_vpc" "default" {
   enable_dns_support = "${var.vpc_enable_dns_support}"
   enable_dns_hostnames = "${var.vpc_enable_dns_hostnames}"
   enable_classiclink = "${var.vpc_enable_classiclink}"
-	tags {
-		Name = "${var.aws_vpc_name}"
-	}
+  tags {
+    Name = "${var.aws_vpc_name}"
+  }
 }
 
 output "aws_vpc_id" {
-	value = "${aws_vpc.default.id}"
+  value = "${aws_vpc.default.id}"
 }
 
 output "aws_vpc_cidr" {
