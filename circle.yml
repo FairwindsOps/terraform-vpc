@@ -1,0 +1,10 @@
+dependencies:
+  cache_directories:
+    - bin
+  pre:
+    - make requirements
+
+test:
+  override:
+    - export PATH=bin/:$PATH
+    - make test
