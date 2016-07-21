@@ -4,6 +4,7 @@
 TEMPDIR := $(shell mktemp -d)
 TF_VERSION = 0.6.12
 TF_PLATFORM = linux
+SHELL := /bin/bash
 
 bin/terraform:
 	wget https://releases.hashicorp.com/terraform/$(TF_VERSION)/terraform_$(TF_VERSION)_$(TF_PLATFORM)_amd64.zip

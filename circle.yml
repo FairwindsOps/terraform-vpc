@@ -6,5 +6,4 @@ dependencies:
 
 test:
   override:
-    - export PATH=bin/:$PATH
-    - make test
+    - PATH=bin:$PATH make test
