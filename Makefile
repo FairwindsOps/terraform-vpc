@@ -1,7 +1,15 @@
 .DEFAULT_GOAL := help
-.PHONY: help test
+.PHONY: help requirements test
 
 TEMPDIR := $(shell mktemp -d)
+TF_VERSION = 0.6.12
+TF_PLATFORM = linux
+
+bin/terraform:
+	wget https://releases.hashicorp.com/terraform/$(TF_VERSION)/terraform_$(TF_VERSION)_$(TF_PLATFORM)_amd64.zip
+	unzip terraform_$(TF_VERSION)_$(TF_PLATFORM)_amd64.zip -d bin/
+
+requirements: bin/terraform ## Install required software
 
 test: ## Execute all tests
 	@for i in `find . -name terraform.\*.tfvars.example`; do \
