@@ -18,7 +18,7 @@ variable "az_count" {
 }
 
 variable "vpc_cidr_base" {
-  default = "10.10"
+  default = "10.20"
 }
 
 variable "vpc_instance_tenancy" {
