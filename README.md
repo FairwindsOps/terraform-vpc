@@ -1,64 +1,18 @@
-# terraform-vpc
+# Amazon Web Services VPC Terraform Module
 
-A Terraform module to create and manage ReactiveOps VPC architectures.
+This Terraform module creates a configurable general purpose [Amazon Web Services VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html). The module offers an opinionated but flexible network topography geared towards general purpose situations with separate public and private subnets. Each VPC can be configured to support one to four availability zones. Private subnet [NAT](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat.html) can be configured via either [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) or [EC2 appliance instances](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html). A single [Internet Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) is created to provide public routing for public subnets. The module does not configure a bastion or VPN instance for private subnet instance access.
 
-Based on https://github.com/cloudfoundry-community/terraform-aws-cf-install
+## Example VPC Layout: 3 AZ's
 
-## Private Subnet NAT: EC2 Instances vs. NAT Gateways
-
-This module supports either NAT instances or gateways for private subnets in the VPC. This option is selectable by setting one of two variable flags to `1`.
-
-Since Terraform has no concept of conditionals for resources this value is used as a count multiplier to zero out resources associated with the disabled option.
-
-** Don't set either of these values to 100 unless you want 300 instances/gateways. **
-
-```
-# NAT routing via EC2 instances
-nat_instance_enabled = 1
-nat_gateway_enabled = 0
-```
-
-```
-# NAT routing via NAT gateways
-nat_instance_enabled = 0
-nat_gateway_enabled = 1
-```
+![Example VPC: 3AZ](https://dl.dropboxusercontent.com/s/0z9vrjrjsb51cq5/example-vpc-3AZ.png)
 
 ## Usage
 
-* Required variables:
-
-```
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "aws_key_name" {}
-variable "aws_region" {}
-
-variable "aws_azs" {}
-variable "az_count" {}
-
-variable "vpc_cidr_base" {}
-
-variable "nat_instance_enabled" {}
-variable "nat_gateway_enabled" {}
-```
-
-* Example variables:
-
-```
-aws_key_name = "nat"
-aws_azs = "us-west-2a, us-west-2b, us-west-2c, us-west-2d"
-az_count = 3
-nat_instance_enabled = 0
-nat_gateway_enabled = 1
-vpc_cidr_base = "10.0"
-```
-
-* Include this in your main.tf:
+* Include the module in your `main.tf`:
 
 ```
 module "vpc" {
-  source = "./modules/terraform-vpc"
+  source = "https://github.com/reactiveops/terraform-vpc.git"
 
   aws_access_key = "${var.aws_access_key}"
   aws_secret_key = "${var.aws_secret_key}"
@@ -75,4 +29,87 @@ module "vpc" {
   nat_key_name = "${var.nat_key_name}"
   nat_instance_type = "${var.nat_instance_type}"
 }
+```
+
+* Create the required variables either in `main.tf` or a separate `variables.tf` file:
+
+```
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+variable "aws_key_name" {}
+variable "aws_region" {}
+
+variable "aws_azs" {}
+variable "az_count" {}
+
+variable "vpc_cidr_base" {}
+
+variable "nat_instance_enabled" {}
+variable "nat_gateway_enabled" {}
+```
+
+* Assign variable values, for example in a `terraform.tfvars` file:
+
+```
+aws_key_name = "nat"
+aws_azs = "us-west-2a, us-west-2b, us-west-2c, us-west-2d"
+az_count = 3
+nat_instance_enabled = 0
+nat_gateway_enabled = 1
+vpc_cidr_base = "10.0"
+```
+
+This repo contains a few example `*.tfvars.examples` files showing example variable configurations.
+
+## Configuration Options
+
+### VPC IP Addresses
+
+Generated VPC's will have a /16 CIDR block providing up to 65,536 IP addresses. Choose the IP range you want by setting the `vpc_cidr_base` variable to the first two numbers of the desired IP range. All subnets will use IP CIDR's built on this pattern.
+
+```
+vpc_cidr_base = "10.1"
+```
+
+The following subnets will be created in each AZ:
+
+* Public
+  * Resources requiring public IP addresses like VPN or bastion instances and Elastic Load Balancers.
+* Private working
+  * Internal non-production resources like web server and database instances.
+* Private production
+  * Internal production resources like web server and database instances.
+* Private admin
+  * Internal shared administrative resources like build server instances.
+
+Each subnet will be a /21 block providing up to 2,048 IP addresses per subnet and AZ.
+
+### AZ Count
+
+Your VPC can span between one and four AZ's. You can select the specific AZ's that should be used.
+
+```
+aws_azs = "us-west-2a, us-west-2b, us-west-2c, us-west-2d"
+az_count = 4
+```
+
+### Private Subnet NAT: EC2 Instances vs. NAT Gateways
+
+This module supports either NAT instances or Gateways for private subnets in the VPC. This option is selectable by setting one of two variable flags to `1`.
+
+Since Terraform has no concept of conditionals for resources this value is used as a count multiplier to zero out resources associated with the disabled option. Be sure to use `1` or `0` values as the number will multiply the number of instances or gateways created.
+
+```
+# NAT routing via EC2 instances
+nat_instance_enabled = 1
+nat_gateway_enabled = 0
+
+nat_key_name = "valid_ec2_key_name"
+nat_instance_type = "t2.small"
+```
+
+```
+# NAT routing via NAT gateways
+nat_instance_enabled = 0
+nat_gateway_enabled = 1
 ```
