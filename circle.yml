@@ -2,8 +2,8 @@ dependencies:
   cache_directories:
     - bin
   pre:
-    - make requirements
+    - make requirements TF_PLATFORM=linux
 
 test:
   override:
-    - PATH=bin:$PATH make test
+    - make test TF_PLATFORM=linux

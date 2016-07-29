@@ -2,8 +2,8 @@
 .PHONY: help requirements test
 
 TEMPDIR := $(shell mktemp -d)
-TF_VERSION = 0.6.12
-TF_PLATFORM = linux
+TF_VERSION = 0.6.16
+TF_PLATFORM = darwin
 SHELL := /bin/bash
 
 bin/terraform:
@@ -12,9 +12,9 @@ bin/terraform:
 
 requirements: bin/terraform ## Install required software
 
-test: ## Execute all tests
+test: requirements ## Execute all tests
 	@for i in `find . -name terraform.\*.tfvars.example`; do \
-		terraform plan -var-file $$i 1> $(TEMPDIR)/$$i.output && \
+		bin/terraform plan -var-file $$i 1> $(TEMPDIR)/$$i.output && \
 		diff tests/fixtures/$$i.output $(TEMPDIR)/$$i.output; \
 		if [[ $$? -ne 0 ]] ; then exit 1; fi; \
 	done
