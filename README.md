@@ -113,3 +113,28 @@ nat_instance_type = "t2.small"
 nat_instance_enabled = 0
 nat_gateway_enabled = 1
 ```
+
+## Testing
+
+This repo contains a few `.tfvars.example` files in the root illustrating different module usage configuration patterns. Each `.tfvars.example` file has a corresponding tfplan output file under `test/fixtures` representing the expected output. The project Makefile includes targets for installing a specific version of Terraform and comparing results of a `terraform plan` against expected output files.
+
+### Setup
+
+Running `make test` requires an actual AWS account for plan generation. The AWS account used requires read-only access to VPC/EC2 resources. No changes are applied. Credentials can be set via environment variables.
+
+```
+export TF_VAR_aws_access_key=XXXXXXXXXXXXXXXXX
+export TF_VAR_aws_secret_key=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
+### Executing tests
+
+```
+> make test
+```
+
+Makefile defaults expect execution on OS X. To execute on Linux:
+
+```
+> make test TF_PLATFORM=Linux
+```
