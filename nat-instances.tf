@@ -11,3 +11,10 @@ resource "aws_instance" "nat" {
     Name = "admin_nat_az${(count.index + 1)}"
   }
 }
+
+resource "aws_eip_association" "nat_eip" {
+  count = "${var.az_count * var.nat_instance_enabled}"
+  instance_id = "${element(aws_instance.nat.*.id, count.index)}"
+  allocation_id = "${element(aws_eip.mod_nat.*.id, count.index)}"
+  depends_on = ["aws_eip.mod_nat","aws_instance.nat"]
+}
