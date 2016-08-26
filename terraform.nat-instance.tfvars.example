@@ -8,4 +8,4 @@ nat_instance_enabled = "1"
 nat_gateway_enabled = "0"
 
 nat_instance_type = "t2.small"
-nat_key_name = "dk_experimental"
+nat_key_name = "somekey"
