@@ -2,7 +2,7 @@
 .PHONY: help requirements test
 
 TEMPDIR := $(shell mktemp -d)
-TF_VERSION = 0.6.16
+TF_VERSION = 0.7.1
 TF_PLATFORM = darwin
 SHELL := /bin/bash
 
