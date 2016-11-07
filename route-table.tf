@@ -19,16 +19,8 @@ resource "aws_route_table" "private" {
   }
 }
 
-resource "aws_route" "private_nat_instance" {
-  count = "${var.az_count * var.nat_instance_enabled}"
-  route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
-  instance_id = "${element(aws_instance.nat.*.id, count.index)}"
-  destination_cidr_block = "0.0.0.0/0"
-  depends_on = ["aws_route_table.private","aws_instance.nat"]
-}
-
 resource "aws_route" "private_nat_gateway" {
-  count = "${var.az_count * var.nat_gateway_enabled}"
+  count = "${var.az_count}"
   route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
   nat_gateway_id = "${element(aws_nat_gateway.nat_gateway.*.id, count.index)}"
   destination_cidr_block = "0.0.0.0/0"

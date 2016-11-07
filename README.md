@@ -1,6 +1,6 @@
 # Amazon Web Services VPC Terraform Module
 
-This Terraform module creates a configurable general purpose [Amazon Web Services VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html). The module offers an opinionated but flexible network topography geared towards general purpose situations with separate public and private subnets. Each VPC can be configured to support one to four availability zones. Private subnet [NAT](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat.html) can be configured via either [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) or [EC2 appliance instances](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html). A single [Internet Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) is created to provide public routing for public subnets. The module does not configure a bastion or VPN instance for private subnet instance access.
+This Terraform module creates a configurable general purpose [Amazon Web Services VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html). The module offers an opinionated but flexible network topography geared towards general purpose situations with separate public and private subnets. Each VPC can be configured to support one to four availability zones. Private subnet [NAT](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat.html) can be configured via either [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html). A single [Internet Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) is created to provide public routing for public subnets. The module does not configure a bastion or VPN instance for private subnet instance access.
 
 This module has been tested with Terraform version 0.7.1.
 
@@ -25,11 +25,6 @@ module "vpc" {
 
   vpc_cidr_base = "${var.vpc_cidr_base}"
 
-  nat_instance_enabled = "${var.nat_instance_enabled}"
-  nat_gateway_enabled = "${var.nat_gateway_enabled}"
-
-  nat_key_name = "${var.nat_key_name}"
-  nat_instance_type = "${var.nat_instance_type}"
 }
 ```
 
@@ -38,7 +33,6 @@ module "vpc" {
 ```
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
-variable "aws_key_name" {}
 variable "aws_region" {}
 
 variable "aws_azs" {}
@@ -46,18 +40,13 @@ variable "az_count" {}
 
 variable "vpc_cidr_base" {}
 
-variable "nat_instance_enabled" {}
-variable "nat_gateway_enabled" {}
 ```
 
 * Assign variable values, for example in a `terraform.tfvars` file:
 
 ```
-aws_key_name = "nat"
 aws_azs = "us-west-2a, us-west-2b, us-west-2c, us-west-2d"
 az_count = 3
-nat_instance_enabled = 0
-nat_gateway_enabled = 1
 vpc_cidr_base = "10.0"
 ```
 
@@ -93,27 +82,6 @@ Your VPC can span between one and four AZ's. You can select the specific AZ's th
 ```
 aws_azs = "us-west-2a, us-west-2b, us-west-2c, us-west-2d"
 az_count = 4
-```
-
-### Private Subnet NAT: EC2 Instances vs. NAT Gateways
-
-This module supports either NAT instances or Gateways for private subnets in the VPC. This option is selectable by setting one of two variable flags to `1`.
-
-Since Terraform has no concept of conditionals for resources this value is used as a count multiplier to zero out resources associated with the disabled option. Be sure to use `1` or `0` values as the number will multiply the number of instances or gateways created.
-
-```
-# NAT routing via EC2 instances
-nat_instance_enabled = 1
-nat_gateway_enabled = 0
-
-nat_key_name = "valid_ec2_key_name"
-nat_instance_type = "t2.small"
-```
-
-```
-# NAT routing via NAT gateways
-nat_instance_enabled = 0
-nat_gateway_enabled = 1
 ```
 
 ## Testing

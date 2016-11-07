@@ -2,6 +2,45 @@ Refreshing Terraform state in-memory prior to plan...
 The refreshed state will be used to calculate this plan, but
 will not be persisted to local or remote state storage.
 
+[0m[1maws_route_table_association.private_private_prod.2: Refreshing state... (ID: rtbassoc-a704f3c1)[0m
+[0m[1maws_route_table_association.private_private_prod.1: Refreshing state... (ID: rtbassoc-a304f3c5)[0m
+[0m[1maws_route_table_association.private_private_working.1: Refreshing state... (ID: rtbassoc-a104f3c7)[0m
+[0m[1maws_route_table_association.private_admin.2: Refreshing state... (ID: rtbassoc-a004f3c6)[0m
+[0m[1maws_route_table_association.private_private_working.2: Refreshing state... (ID: rtbassoc-ae04f3c8)[0m
+[0m[1maws_route_table_association.private_admin.1: Refreshing state... (ID: rtbassoc-a204f3c4)[0m
+[0m[1maws_route_table_association.public_public.1: Refreshing state... (ID: rtbassoc-ac04f3ca)[0m
+[0m[1maws_route_table_association.public_public.2: Refreshing state... (ID: rtbassoc-aa04f3cc)[0m
+[0m[1maws_route.private_nat_gateway.2: Refreshing state... (ID: r-rtb-55c144321080289494)[0m
+[0m[1maws_route.private_nat_gateway.1: Refreshing state... (ID: r-rtb-54c144331080289494)[0m
+[0m[1maws_vpc.default: Refreshing state... (ID: vpc-8edb26e9)[0m
+[0m[1maws_subnet.admin.2: Refreshing state... (ID: subnet-55caa50d)[0m
+[0m[1maws_subnet.admin.1: Refreshing state... (ID: subnet-c31b02a7)[0m
+[0m[1maws_subnet.private_working.1: Refreshing state... (ID: subnet-cc1b02a8)[0m
+[0m[1maws_subnet.private_working.2: Refreshing state... (ID: subnet-56caa50e)[0m
+[0m[1maws_nat_gateway.nat_gateway.2: Refreshing state... (ID: nat-0bf0e79e7655808e7)[0m
+[0m[1maws_nat_gateway.nat_gateway.1: Refreshing state... (ID: nat-091ee3ad1c0d1bac9)[0m
+[0m[1maws_subnet.private_prod.1: Refreshing state... (ID: subnet-c71b02a3)[0m
+[0m[1maws_subnet.private_prod.2: Refreshing state... (ID: subnet-54caa50c)[0m
+[0m[1maws_route_table.private.2: Refreshing state... (ID: rtb-55c14432)[0m
+[0m[1maws_route_table.private.1: Refreshing state... (ID: rtb-54c14433)[0m
+[0m[1maws_eip.mod_nat.1: Refreshing state... (ID: eipalloc-e156cd86)[0m
+[0m[1maws_eip.mod_nat.2: Refreshing state... (ID: eipalloc-eb53c88c)[0m
+[0m[1maws_subnet.public.1: Refreshing state... (ID: subnet-c01b02a4)[0m
+[0m[1maws_subnet.public.2: Refreshing state... (ID: subnet-53caa50b)[0m
+[0m[1maws_internet_gateway.default: Refreshing state... (ID: igw-23911b47)[0m
+[0m[1maws_subnet.private_prod: Refreshing state... (ID: subnet-5c2e1d2a)[0m
+[0m[1maws_subnet.admin: Refreshing state... (ID: subnet-5e2e1d28)[0m
+[0m[1maws_subnet.private_working: Refreshing state... (ID: subnet-5d2e1d2b)[0m
+[0m[1maws_route_table.private: Refreshing state... (ID: rtb-56c14431)[0m
+[0m[1maws_eip.mod_nat: Refreshing state... (ID: eipalloc-d452c9b3)[0m
+[0m[1maws_subnet.public: Refreshing state... (ID: subnet-512e1d27)[0m
+[0m[1maws_route_table.public: Refreshing state... (ID: rtb-50c14437)[0m
+[0m[1maws_route_table_association.private_private_prod: Refreshing state... (ID: rtbassoc-a404f3c2)[0m
+[0m[1maws_route_table_association.private_admin: Refreshing state... (ID: rtbassoc-a504f3c3)[0m
+[0m[1maws_route_table_association.private_private_working: Refreshing state... (ID: rtbassoc-af04f3c9)[0m
+[0m[1maws_route_table_association.public_public: Refreshing state... (ID: rtbassoc-ad04f3cb)[0m
+[0m[1maws_nat_gateway.nat_gateway: Refreshing state... (ID: nat-0d5a41aee288c386c)[0m
+[0m[1maws_route.private_nat_gateway: Refreshing state... (ID: r-rtb-56c144311080289494)[0m
 
 The Terraform execution plan has been generated and is shown below.
 Resources are shown in alphabetical order for quick scanning. Green resources
@@ -23,14 +62,14 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     vpc:               "true"
 [0m
 [0m[32m+ aws_internet_gateway.default
-[0m    vpc_id: "${aws_vpc.default.id}"
+[0m    vpc_id: "<computed>"
 [0m
 [0m[32m+ aws_nat_gateway.nat_gateway
-[0m    allocation_id:        "${element(aws_eip.mod_nat.*.id, count.index)}"
+[0m    allocation_id:        "<computed>"
     network_interface_id: "<computed>"
     private_ip:           "<computed>"
     public_ip:            "<computed>"
-    subnet_id:            "${element(aws_subnet.public.*.id, count.index)}"
+    subnet_id:            "<computed>"
 [0m
 [0m[32m+ aws_route.private_nat_gateway
 [0m    destination_cidr_block:     "0.0.0.0/0"
@@ -38,53 +77,69 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     gateway_id:                 "<computed>"
     instance_id:                "<computed>"
     instance_owner_id:          "<computed>"
-    nat_gateway_id:             "${element(aws_nat_gateway.nat_gateway.*.id, count.index)}"
+    nat_gateway_id:             "<computed>"
     network_interface_id:       "<computed>"
     origin:                     "<computed>"
-    route_table_id:             "${element(aws_route_table.private.*.id, count.index)}"
+    route_table_id:             "<computed>"
     state:                      "<computed>"
 [0m
 [0m[32m+ aws_route_table.private
 [0m    route.#:   "<computed>"
     tags.%:    "1"
     tags.Name: "private_az1"
-    vpc_id:    "${aws_vpc.default.id}"
+    vpc_id:    "<computed>"
 [0m
 [0m[32m+ aws_route_table.public
 [0m    route.#:                                     "1"
     route.~1259162026.cidr_block:                "0.0.0.0/0"
-    route.~1259162026.gateway_id:                "${aws_internet_gateway.default.id}"
+    route.~1259162026.gateway_id:                "<computed>"
     route.~1259162026.instance_id:               ""
     route.~1259162026.nat_gateway_id:            ""
     route.~1259162026.network_interface_id:      ""
     route.~1259162026.vpc_peering_connection_id: ""
     tags.%:                                      "1"
     tags.Name:                                   "public"
-    vpc_id:                                      "${aws_vpc.default.id}"
+    vpc_id:                                      "<computed>"
 [0m
-[0m[32m+ aws_route_table_association.private_admin
-[0m    route_table_id: "${element(aws_route_table.private.*.id, count.index)}"
-    subnet_id:      "${element(aws_subnet.admin.*.id, count.index)}"
+[0m[32m-/+ aws_route_table_association.private_admin
+[0m    route_table_id: "rtb-56c14431" => "<computed>"
+    subnet_id:      "subnet-5e2e1d28" => "<computed>" [31m(forces new resource)[0m
 [0m
-[0m[32m+ aws_route_table_association.private_private_prod
-[0m    route_table_id: "${element(aws_route_table.private.*.id, count.index)}"
-    subnet_id:      "${element(aws_subnet.private_prod.*.id, count.index)}"
+[0m[31m- aws_route_table_association.private_admin.1
+[0m[0m
+[0m[31m- aws_route_table_association.private_admin.2
+[0m[0m
+[0m[32m-/+ aws_route_table_association.private_private_prod
+[0m    route_table_id: "rtb-56c14431" => "<computed>"
+    subnet_id:      "subnet-5c2e1d2a" => "<computed>" [31m(forces new resource)[0m
 [0m
-[0m[32m+ aws_route_table_association.private_private_working
-[0m    route_table_id: "${element(aws_route_table.private.*.id, count.index)}"
-    subnet_id:      "${element(aws_subnet.private_working.*.id, count.index)}"
+[0m[31m- aws_route_table_association.private_private_prod.1
+[0m[0m
+[0m[31m- aws_route_table_association.private_private_prod.2
+[0m[0m
+[0m[32m-/+ aws_route_table_association.private_private_working
+[0m    route_table_id: "rtb-56c14431" => "<computed>"
+    subnet_id:      "subnet-5d2e1d2b" => "<computed>" [31m(forces new resource)[0m
 [0m
-[0m[32m+ aws_route_table_association.public_public
-[0m    route_table_id: "${aws_route_table.public.id}"
-    subnet_id:      "${element(aws_subnet.public.*.id, count.index)}"
+[0m[31m- aws_route_table_association.private_private_working.1
+[0m[0m
+[0m[31m- aws_route_table_association.private_private_working.2
+[0m[0m
+[0m[32m-/+ aws_route_table_association.public_public
+[0m    route_table_id: "rtb-50c14437" => "<computed>"
+    subnet_id:      "subnet-512e1d27" => "<computed>" [31m(forces new resource)[0m
 [0m
+[0m[31m- aws_route_table_association.public_public.1
+[0m[0m
+[0m[31m- aws_route_table_association.public_public.2
+[0m[0m
 [0m[32m+ aws_subnet.admin
 [0m    availability_zone:       "us-east-1a"
     cidr_block:              "10.21.0.0/21"
     map_public_ip_on_launch: "false"
     tags.%:                  "1"
     tags.Name:               "admin_az1"
-    vpc_id:                  "${aws_vpc.default.id}"
+    vpc_id:                  "<computed>"
 [0m
 [0m[32m+ aws_subnet.private_prod
 [0m    availability_zone:       "us-east-1a"
@@ -92,7 +147,7 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     map_public_ip_on_launch: "false"
     tags.%:                  "1"
     tags.Name:               "private_prod_az1"
-    vpc_id:                  "${aws_vpc.default.id}"
+    vpc_id:                  "<computed>"
 [0m
 [0m[32m+ aws_subnet.private_working
 [0m    availability_zone:       "us-east-1a"
@@ -100,7 +155,7 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     map_public_ip_on_launch: "false"
     tags.%:                  "1"
     tags.Name:               "private_working_az1"
-    vpc_id:                  "${aws_vpc.default.id}"
+    vpc_id:                  "<computed>"
 [0m
 [0m[32m+ aws_subnet.public
 [0m    availability_zone:       "us-east-1a"
@@ -108,11 +163,12 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     map_public_ip_on_launch: "false"
     tags.%:                  "1"
     tags.Name:               "public_az1"
-    vpc_id:                  "${aws_vpc.default.id}"
+    vpc_id:                  "<computed>"
 [0m
 [0m[32m+ aws_vpc.default
 [0m    cidr_block:                "10.21.0.0/16"
     default_network_acl_id:    "<computed>"
+    default_route_table_id:    "<computed>"
     default_security_group_id: "<computed>"
     dhcp_options_id:           "<computed>"
     enable_classiclink:        "false"
@@ -124,4 +180,4 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     tags.Name:                 "vpc-module-test"
 [0m
 [0m
-[0m[1mPlan:[0m 15 to add, 0 to change, 0 to destroy.[0m
+[0m[1mPlan:[0m 15 to add, 0 to change, 12 to destroy.[0m

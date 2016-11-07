@@ -96,34 +96,3 @@ variable "private_working_subnet_cidrs" {
     zone3 = ".120.0/21"
   }
 }
-
-variable "aws_nat_ami" {
-  default = {
-    us-east-1 = "ami-4868ab25"
-    us-west-1 = "ami-004b0f60"
-    us-west-2 = "ami-a275b1c2"
-    ap-northeast-1 = "ami-2443b745"
-    ap-southeast-1 = "ami-a79b49c4"
-    ap-southeast-2 = "ami-53371f30"
-    eu-west-1 = "ami-a8dd45db"
-    sa-east-1 = "ami-9336bcff"
-  }
-}
-
-variable "nat_instance_enabled" {
-  description = "set to 1 to create nat ec2 instances for private subnets"
-  default = 0
-}
-
-variable "nat_gateway_enabled" {
-  description = "set to 1 to create nat gateway instances for private subnets"
-  default = 0
-}
-
-variable "nat_instance_type" {
-  default = "t2.micro"
-}
-
-variable "nat_key_name" {
-  default = ""
-}
