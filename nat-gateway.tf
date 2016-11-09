@@ -5,6 +5,10 @@ resource "aws_nat_gateway" "nat_gateway" {
   depends_on = ["aws_internet_gateway.default","aws_eip.mod_nat","aws_subnet.public"]
 }
 
-output "nat_gateway_count" {
+output "aws_nat_gateway_count" {
   value = "${length(aws_nat_gateway.nat_gateway.*.id)}"
+}
+
+output "aws_nat_gateway_ids" {
+  value = ["${aws_nat_gateway.nat_gateway.*.id}"]
 }

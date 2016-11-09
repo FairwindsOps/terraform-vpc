@@ -11,7 +11,7 @@ resource "aws_subnet" "admin" {
 }
 
 output "aws_subnet_admin_ids" {
-  value = "${join(", ", aws_subnet.admin.*.id)}"
+  value = ["${aws_subnet.admin.*.id}"]
 }
 
 resource "aws_route_table_association" "private_admin" {
@@ -29,7 +29,7 @@ resource "aws_subnet" "public" {
 }
 
 output "aws_subnet_public_ids" {
-  value = "${join(", ", aws_subnet.public.*.id)}"
+  value = ["${aws_subnet.public.*.id}"]
 }
 
 resource "aws_route_table_association" "public_public" {
@@ -47,7 +47,7 @@ resource "aws_subnet" "private_prod" {
 }
 
 output "aws_subnet_private_prod_ids" {
-  value = "${join(", ", aws_subnet.private_prod.*.id)}"
+  value = ["${aws_subnet.private_prod.*.id}"]
 }
 
 resource "aws_route_table_association" "private_private_prod" {
@@ -65,7 +65,7 @@ resource "aws_subnet" "private_working" {
 }
 
 output "aws_subnet_private_working_ids" {
-  value = "${join(", ", aws_subnet.private_working.*.id)}"
+  value = ["${aws_subnet.private_working.*.id}"]
 }
 
 resource "aws_route_table_association" "private_private_working" {
