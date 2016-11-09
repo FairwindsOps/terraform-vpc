@@ -43,7 +43,11 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     vpc:               "true"
 [0m
 [0m[32m+ aws_internet_gateway.default
-[0m    vpc_id: "<computed>"
+[0m    tags.%:          "3"
+    tags.Author:     "ReactiveOps"
+    tags.Managed By: "Terraform"
+    tags.Name:       "vpc-module-test"
+    vpc_id:          "<computed>"
 [0m
 [0m[32m+ aws_nat_gateway.nat_gateway.0
 [0m    allocation_id:        "<computed>"
@@ -103,22 +107,28 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     state:                      "<computed>"
 [0m
 [0m[32m+ aws_route_table.private.0
-[0m    route.#:   "<computed>"
-    tags.%:    "1"
-    tags.Name: "private_az1"
-    vpc_id:    "<computed>"
+[0m    route.#:         "<computed>"
+    tags.%:          "3"
+    tags.Author:     "ReactiveOps"
+    tags.Managed By: "Terraform"
+    tags.Name:       "private_az1"
+    vpc_id:          "<computed>"
 [0m
 [0m[32m+ aws_route_table.private.1
-[0m    route.#:   "<computed>"
-    tags.%:    "1"
-    tags.Name: "private_az2"
-    vpc_id:    "<computed>"
+[0m    route.#:         "<computed>"
+    tags.%:          "3"
+    tags.Author:     "ReactiveOps"
+    tags.Managed By: "Terraform"
+    tags.Name:       "private_az2"
+    vpc_id:          "<computed>"
 [0m
 [0m[32m+ aws_route_table.private.2
-[0m    route.#:   "<computed>"
-    tags.%:    "1"
-    tags.Name: "private_az3"
-    vpc_id:    "<computed>"
+[0m    route.#:         "<computed>"
+    tags.%:          "3"
+    tags.Author:     "ReactiveOps"
+    tags.Managed By: "Terraform"
+    tags.Name:       "private_az3"
+    vpc_id:          "<computed>"
 [0m
 [0m[32m+ aws_route_table.public
 [0m    route.#:                                     "1"
@@ -128,7 +138,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     route.~1259162026.nat_gateway_id:            ""
     route.~1259162026.network_interface_id:      ""
     route.~1259162026.vpc_peering_connection_id: ""
-    tags.%:                                      "1"
+    tags.%:                                      "3"
+    tags.Author:                                 "ReactiveOps"
+    tags.Managed By:                             "Terraform"
     tags.Name:                                   "public"
     vpc_id:                                      "<computed>"
 [0m
@@ -184,7 +196,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1a"
     cidr_block:              "10.21.0.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "admin_az1"
     vpc_id:                  "<computed>"
 [0m
@@ -192,7 +206,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1d"
     cidr_block:              "10.21.8.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "admin_az2"
     vpc_id:                  "<computed>"
 [0m
@@ -200,7 +216,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1c"
     cidr_block:              "10.21.16.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "admin_az3"
     vpc_id:                  "<computed>"
 [0m
@@ -208,7 +226,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1a"
     cidr_block:              "10.21.64.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "private_prod_az1"
     vpc_id:                  "<computed>"
 [0m
@@ -216,7 +236,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1d"
     cidr_block:              "10.21.72.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "private_prod_az2"
     vpc_id:                  "<computed>"
 [0m
@@ -224,7 +246,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1c"
     cidr_block:              "10.21.80.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "private_prod_az3"
     vpc_id:                  "<computed>"
 [0m
@@ -232,7 +256,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1a"
     cidr_block:              "10.21.96.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "private_working_az1"
     vpc_id:                  "<computed>"
 [0m
@@ -240,7 +266,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1d"
     cidr_block:              "10.21.104.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "private_working_az2"
     vpc_id:                  "<computed>"
 [0m
@@ -248,7 +276,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1c"
     cidr_block:              "10.21.112.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "private_working_az3"
     vpc_id:                  "<computed>"
 [0m
@@ -256,7 +286,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1a"
     cidr_block:              "10.21.32.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "public_az1"
     vpc_id:                  "<computed>"
 [0m
@@ -264,7 +296,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1d"
     cidr_block:              "10.21.40.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "public_az2"
     vpc_id:                  "<computed>"
 [0m
@@ -272,7 +306,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
 [0m    availability_zone:       "us-east-1c"
     cidr_block:              "10.21.48.0/21"
     map_public_ip_on_launch: "false"
-    tags.%:                  "1"
+    tags.%:                  "3"
+    tags.Author:             "ReactiveOps"
+    tags.Managed By:         "Terraform"
     tags.Name:               "public_az3"
     vpc_id:                  "<computed>"
 [0m
@@ -287,7 +323,9 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     enable_dns_support:        "true"
     instance_tenancy:          "default"
     main_route_table_id:       "<computed>"
-    tags.%:                    "1"
+    tags.%:                    "3"
+    tags.Author:               "ReactiveOps"
+    tags.Managed By:           "Terraform"
     tags.Name:                 "vpc-module-test"
 [0m
 [0m

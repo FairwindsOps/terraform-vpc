@@ -96,3 +96,22 @@ variable "private_working_subnet_cidrs" {
     zone3 = ".120.0/21"
   }
 }
+
+variable "multi_az_nat_gateway" {
+  description = "place a NAT gateway in each AZ"
+  default = 1
+}
+
+variable "single_nat_gateway" {
+  description = "use a single NAT gateway to serve outbound traffic for all AZs"
+  default = 0
+}
+
+variable "global_tags" {
+  description = "AWS tags that will be added to all resources managed herein"
+  type = "map"
+  default = {
+    "Author" = "ReactiveOps"
+    "Managed By" = "Terraform"
+  }
+}

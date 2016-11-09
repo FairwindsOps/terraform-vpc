@@ -1,4 +1,4 @@
 resource "aws_eip" "mod_nat" {
-  count = "${var.az_count}"
+  count = "${((var.multi_az_nat_gateway * var.az_count) + (var.single_nat_gateway * 1))}"
   vpc = true
 }
