@@ -2,7 +2,8 @@
 .PHONY: help requirements test
 
 TEMPDIR := $(shell mktemp -d)
-TF_VERSION = 0.6.16
+
+TF_VERSION = 0.7.9
 TF_PLATFORM = darwin
 SHELL := /bin/bash
 
@@ -19,6 +20,11 @@ test: requirements ## Execute all tests
 		if [[ $$? -ne 0 ]] ; then exit 1; fi; \
 	done
 	@echo "Temp directory: $(TEMPDIR)"
+
+fixtures: requirements ## Rebuild test fixture terraform plan output files
+	@for i in `find . -name terraform.\*.tfvars.example`; do \
+		bin/terraform plan -var-file $$i 1> tests/fixtures/$$i.output; \
+	done
 
 help: ## Halp!
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

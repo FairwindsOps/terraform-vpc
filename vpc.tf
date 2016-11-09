@@ -4,9 +4,7 @@ resource "aws_vpc" "default" {
   enable_dns_support = "${var.vpc_enable_dns_support}"
   enable_dns_hostnames = "${var.vpc_enable_dns_hostnames}"
   enable_classiclink = "${var.vpc_enable_classiclink}"
-  tags {
-    Name = "${var.aws_vpc_name}"
-  }
+  tags = "${merge(var.global_tags, map("Name", "${var.aws_vpc_name}"))}"
 }
 
 output "aws_vpc_id" {

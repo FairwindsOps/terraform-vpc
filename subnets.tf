@@ -5,15 +5,13 @@
 resource "aws_subnet" "admin" {
   count = "${var.az_count}"
   vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.vpc_cidr_base}${lookup(var.admin_subnet_cidrs, concat("zone", count.index))}"
+  cidr_block = "${var.vpc_cidr_base}${lookup(var.admin_subnet_cidrs, format("zone%d", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
-  tags {
-    Name = "admin_az${(count.index + 1)}"
-  }
+  tags = "${merge(var.global_tags, map("Name", "admin_az${(count.index +1)}"))}"
 }
 
 output "aws_subnet_admin_ids" {
-  value = "${join(", ", aws_subnet.admin.*.id)}"
+  value = ["${aws_subnet.admin.*.id}"]
 }
 
 resource "aws_route_table_association" "private_admin" {
@@ -25,15 +23,13 @@ resource "aws_route_table_association" "private_admin" {
 resource "aws_subnet" "public" {
   count = "${var.az_count}"
   vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.vpc_cidr_base}${lookup(var.public_subnet_cidrs, concat("zone", count.index))}"
+  cidr_block = "${var.vpc_cidr_base}${lookup(var.public_subnet_cidrs, format("zone%d", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
-  tags {
-    Name = "public_az${(count.index + 1)}"
-  }
+  tags = "${merge(var.global_tags, map("Name", "public_az${(count.index +1)}"))}"
 }
 
 output "aws_subnet_public_ids" {
-  value = "${join(", ", aws_subnet.public.*.id)}"
+  value = ["${aws_subnet.public.*.id}"]
 }
 
 resource "aws_route_table_association" "public_public" {
@@ -45,15 +41,13 @@ resource "aws_route_table_association" "public_public" {
 resource "aws_subnet" "private_prod" {
   count = "${var.az_count}"
   vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.vpc_cidr_base}${lookup(var.private_prod_subnet_cidrs, concat("zone", count.index))}"
+  cidr_block = "${var.vpc_cidr_base}${lookup(var.private_prod_subnet_cidrs, format("zone%d", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
-  tags {
-    Name = "private_prod_az${(count.index + 1)}"
-  }
+  tags = "${merge(var.global_tags, map("Name", "private_prod_az${(count.index +1)}"))}"
 }
 
 output "aws_subnet_private_prod_ids" {
-  value = "${join(", ", aws_subnet.private_prod.*.id)}"
+  value = ["${aws_subnet.private_prod.*.id}"]
 }
 
 resource "aws_route_table_association" "private_private_prod" {
@@ -65,15 +59,13 @@ resource "aws_route_table_association" "private_private_prod" {
 resource "aws_subnet" "private_working" {
   count = "${var.az_count}"
   vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.vpc_cidr_base}${lookup(var.private_working_subnet_cidrs, concat("zone", count.index))}"
+  cidr_block = "${var.vpc_cidr_base}${lookup(var.private_working_subnet_cidrs, format("zone%d", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
-  tags {
-    Name = "private_working_az${(count.index + 1)}"
-  }
+  tags = "${merge(var.global_tags, map("Name", "private_working_az${(count.index +1)}"))}"
 }
 
 output "aws_subnet_private_working_ids" {
-  value = "${join(", ", aws_subnet.private_working.*.id)}"
+  value = ["${aws_subnet.private_working.*.id}"]
 }
 
 resource "aws_route_table_association" "private_private_working" {

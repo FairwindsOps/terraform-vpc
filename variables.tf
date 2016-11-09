@@ -97,33 +97,21 @@ variable "private_working_subnet_cidrs" {
   }
 }
 
-variable "aws_nat_ami" {
+variable "multi_az_nat_gateway" {
+  description = "place a NAT gateway in each AZ"
+  default = 1
+}
+
+variable "single_nat_gateway" {
+  description = "use a single NAT gateway to serve outbound traffic for all AZs"
+  default = 0
+}
+
+variable "global_tags" {
+  description = "AWS tags that will be added to all resources managed herein"
+  type = "map"
   default = {
-    us-east-1 = "ami-4868ab25"
-    us-west-1 = "ami-004b0f60"
-    us-west-2 = "ami-a275b1c2"
-    ap-northeast-1 = "ami-2443b745"
-    ap-southeast-1 = "ami-a79b49c4"
-    ap-southeast-2 = "ami-53371f30"
-    eu-west-1 = "ami-a8dd45db"
-    sa-east-1 = "ami-9336bcff"
+    "Author" = "ReactiveOps"
+    "Managed By" = "Terraform"
   }
-}
-
-variable "nat_instance_enabled" {
-  description = "set to 1 to create nat ec2 instances for private subnets"
-  default = 0
-}
-
-variable "nat_gateway_enabled" {
-  description = "set to 1 to create nat gateway instances for private subnets"
-  default = 0
-}
-
-variable "nat_instance_type" {
-  default = "t2.micro"
-}
-
-variable "nat_key_name" {
-  default = ""
 }
