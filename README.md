@@ -84,6 +84,29 @@ aws_azs = "us-west-2a, us-west-2b, us-west-2c, us-west-2d"
 az_count = 4
 ```
 
+### NAT Gateways
+
+`multi_az_nat_gateway`
+
+Ideally, in a multi-AZ setup, there is at least one NAT Gateway residing in each availability zone.  This allows the outbound traffic from private subnets in each AZ to function independently, and allow for some resiliance in-case of an AZ outage.
+
+`single_nat_gateway`
+
+In some cases, it may be necessary to use a single NAT Gateway, in a single AZ, to pass all outbound traffic from the VPC.  This is usually a result of more than one private subnet needing to share a single route table. Concessions must be made in this situation since a route table can only contain a single default route.  This configuration introduces a single point of failure (SPOF) in to a multi-AZ environment and should be used only when necessary.
+
+Default values assume a multi-AZ NAT Gateway configuration:
+```
+variable "multi_az_nat_gateway" {
+  description = "place a NAT gateway in each AZ"
+  default = 1
+}
+
+variable "single_nat_gateway" {
+  description = "use a single NAT gateway to serve outbound traffic for all AZs"
+  default = 0
+}
+```
+
 ## Testing
 
 This repo contains a few `.tfvars.example` files in the root illustrating different module usage configuration patterns. Each `.tfvars.example` file has a corresponding tfplan output file under `test/fixtures` representing the expected output. The project Makefile includes targets for installing a specific version of Terraform and comparing results of a `terraform plan` against expected output files.
