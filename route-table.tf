@@ -19,14 +19,14 @@ resource "aws_route_table" "private" {
   tags = "${merge(var.global_tags, map("Name", "private_az${(count.index +1)}"))}"
 }
 
+output "aws_route_table_private_ids" {
+  value = ["${aws_route_table.private.*.id}"]
+}
+
 resource "aws_route" "private_nat_gateway" {
   count = "${((var.multi_az_nat_gateway * var.az_count) + (var.single_nat_gateway * 1))}"
   route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
   nat_gateway_id = "${element(aws_nat_gateway.nat_gateway.*.id, count.index)}"
   destination_cidr_block = "0.0.0.0/0"
   depends_on = ["aws_route_table.private","aws_nat_gateway.nat_gateway"]
-}
-
-output "aws_route_table_private_ids" {
-  value = ["${aws_eip.mod_nat.*.id}"]
 }
