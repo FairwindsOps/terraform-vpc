@@ -106,6 +106,18 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     route_table_id:             "<computed>"
     state:                      "<computed>"
 [0m
+[0m[32m+ aws_route.public_internet_gateway
+[0m    destination_cidr_block:     "0.0.0.0/0"
+    destination_prefix_list_id: "<computed>"
+    gateway_id:                 "<computed>"
+    instance_id:                "<computed>"
+    instance_owner_id:          "<computed>"
+    nat_gateway_id:             "<computed>"
+    network_interface_id:       "<computed>"
+    origin:                     "<computed>"
+    route_table_id:             "<computed>"
+    state:                      "<computed>"
+[0m
 [0m[32m+ aws_route_table.private.0
 [0m    route.#:         "<computed>"
     tags.%:          "3"
@@ -131,18 +143,12 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     vpc_id:          "<computed>"
 [0m
 [0m[32m+ aws_route_table.public
-[0m    route.#:                                     "1"
-    route.~1259162026.cidr_block:                "0.0.0.0/0"
-    route.~1259162026.gateway_id:                "<computed>"
-    route.~1259162026.instance_id:               ""
-    route.~1259162026.nat_gateway_id:            ""
-    route.~1259162026.network_interface_id:      ""
-    route.~1259162026.vpc_peering_connection_id: ""
-    tags.%:                                      "3"
-    tags.Author:                                 "ReactiveOps"
-    tags.Managed By:                             "Terraform"
-    tags.Name:                                   "public"
-    vpc_id:                                      "<computed>"
+[0m    route.#:         "<computed>"
+    tags.%:          "3"
+    tags.Author:     "ReactiveOps"
+    tags.Managed By: "Terraform"
+    tags.Name:       "public"
+    vpc_id:          "<computed>"
 [0m
 [0m[32m+ aws_route_table_association.private_admin.0
 [0m    route_table_id: "<computed>"
@@ -329,4 +335,4 @@ Note: You didn't specify an "-out" parameter to save this plan, so when
     tags.Name:                 "vpc-module-test"
 [0m
 [0m
-[0m[1mPlan:[0m 39 to add, 0 to change, 0 to destroy.[0m
+[0m[1mPlan:[0m 40 to add, 0 to change, 0 to destroy.[0m

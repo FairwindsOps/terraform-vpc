@@ -1,16 +1,19 @@
 # Routing table for public subnets
 resource "aws_route_table" "public" {
   vpc_id = "${aws_vpc.default.id}"
-    route {
-      cidr_block = "0.0.0.0/0"
-      gateway_id = "${aws_internet_gateway.default.id}"
-    }
   tags = "${merge(var.global_tags, map("Name", "public"))}"
 }
 
 output "aws_route_table_public_ids" {
   value = ["${aws_route_table.public.id}"]
 }
+
+resource "aws_route" "public_internet_gateway" {
+  route_table_id = "${aws_route_table.public.id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id = "${aws_internet_gateway.default.id}"
+}
+
 
 # Routing table for private subnets
 resource "aws_route_table" "private" {
