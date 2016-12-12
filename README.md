@@ -2,7 +2,7 @@
 
 This Terraform module creates a configurable general purpose [Amazon Web Services VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html). The module offers an opinionated but flexible network topography geared towards general purpose situations with separate public and private subnets. Each VPC can be configured to support one to four availability zones. Private subnet [NAT](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat.html) can be configured via either [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html). A single [Internet Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) is created to provide public routing for public subnets. The module does not configure a bastion or VPN instance for private subnet instance access.
 
-This module has been tested with Terraform version 0.7.1.
+This module has been tested with Terraform version 0.7.9.
 
 ## Example VPC Layout: 3 AZ's
 
@@ -14,7 +14,7 @@ This module has been tested with Terraform version 0.7.1.
 
 ```
 module "vpc" {
-  source = "https://github.com/reactiveops/terraform-vpc.git"
+  source = "git::ssh://git@github.com/reactiveops/terraform-vpc.git?ref=2.0.2"
 
   aws_access_key = "${var.aws_access_key}"
   aws_secret_key = "${var.aws_secret_key}"
@@ -65,13 +65,13 @@ vpc_cidr_base = "10.1"
 The following subnets will be created in each AZ:
 
 * Public
-  * Resources requiring public IP addresses like VPN or bastion instances and Elastic Load Balancers.
+  * Resources requiring public IP addresses such as VPN/bastion instances and Elastic Load Balancers.
 * Private working
-  * Internal non-production resources like web server and database instances.
+  * Internal non-production resources such as web servers and database instances.
 * Private production
-  * Internal production resources like web server and database instances.
+  * Internal production resources such as web servers and database instances.
 * Private admin
-  * Internal shared administrative resources like build server instances.
+  * Internal shared administrative resources such as build server instances.
 
 Each subnet will be a /21 block providing up to 2,048 IP addresses per subnet and AZ.
 
@@ -106,6 +106,8 @@ variable "single_nat_gateway" {
   default = 0
 }
 ```
+
+To use a single NAT gateway, set `multi_az_nat_gateway = 0` and `single_nat_gateway = 1` in `terraform.tfvars`
 
 ## Testing
 
