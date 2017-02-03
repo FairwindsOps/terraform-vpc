@@ -127,6 +127,16 @@ variable "single_nat_gateway" {
   default = 0
 }
 
+variable "public_route_table_tags" {
+  description = "Tags to apply to the public route table"
+  default = {}
+}
+
+variable "private_route_table_tags" {
+  description = "Tags to apply to the private route table"
+  default = {}
+}
+
 variable "global_tags" {
   description = "AWS tags that will be added to all resources managed herein"
   type = "map"

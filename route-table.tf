@@ -1,7 +1,9 @@
 # Routing table for public subnets
 resource "aws_route_table" "public" {
   vpc_id = "${aws_vpc.default.id}"
-  tags = "${merge(var.global_tags, map("Name", "public"))}"
+  tags = "${merge(var.global_tags,
+                  map("Name", "public"),
+                  var.public_route_table_tags)}"
 }
 
 output "aws_route_table_public_ids" {
@@ -19,7 +21,9 @@ resource "aws_route" "public_internet_gateway" {
 resource "aws_route_table" "private" {
   count = "${((var.multi_az_nat_gateway * var.az_count) + (var.single_nat_gateway * 1))}"
   vpc_id = "${aws_vpc.default.id}"
-  tags = "${merge(var.global_tags, map("Name", "private_az${(count.index +1)}"))}"
+  tags = "${merge(var.global_tags,
+                  map("Name", "private_az${(count.index +1)}"),
+                  var.private_route_table_tags)}"
 }
 
 output "aws_route_table_private_ids" {

@@ -120,6 +120,13 @@ The subnets created can include custom tags by setting variables of the form `SU
 | private_prod    | private_prod_subnet_tags    |
 | private_working | private_working_subnet_tags |
 
+The routing tables can include custom tags by setting variables of the form `TABLENAME_route_table_tags`.
+
+| Route Table | Variable                 |
+| ----------- | ------------------------ |
+| public      | public_route_table_tags  |
+| private     | private_route_table_tags |
+
 ## Testing
 
 This repo contains a few `.tfvars.example` files in the root illustrating different module usage configuration patterns. Each `.tfvars.example` file has a corresponding tfplan output file under `test/fixtures` representing the expected output. The project Makefile includes targets for installing a specific version of Terraform and comparing results of a `terraform plan` against expected output files.
