@@ -88,7 +88,7 @@ az_count = 4
 
 `multi_az_nat_gateway`
 
-Ideally, in a multi-AZ setup, there is at least one NAT Gateway residing in each availability zone.  This allows the outbound traffic from private subnets in each AZ to function independently, and allow for some resiliance in-case of an AZ outage.
+Ideally, in a multi-AZ setup, there is at least one NAT Gateway residing in each availability zone.  This allows the outbound traffic from private subnets in each AZ to function independently, and allow for some resilience in-case of an AZ outage.
 
 `single_nat_gateway`
 
