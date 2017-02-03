@@ -127,6 +127,11 @@ variable "single_nat_gateway" {
   default = 0
 }
 
+variable "internet_gateway_tags" {
+  description = "Tags to apply to the internet gateway"
+  default = {}
+}
+
 variable "public_route_table_tags" {
   description = "Tags to apply to the public route table"
   default = {}

@@ -127,6 +127,8 @@ The routing tables can include custom tags by setting variables of the form `TAB
 | public      | public_route_table_tags  |
 | private     | private_route_table_tags |
 
+The internet gateway can be tagged with the variable `internet_gateway_tags`
+
 ## Testing
 
 This repo contains a few `.tfvars.example` files in the root illustrating different module usage configuration patterns. Each `.tfvars.example` file has a corresponding tfplan output file under `test/fixtures` representing the expected output. The project Makefile includes targets for installing a specific version of Terraform and comparing results of a `terraform plan` against expected output files.
