@@ -7,7 +7,9 @@ resource "aws_subnet" "admin" {
   vpc_id = "${aws_vpc.default.id}"
   cidr_block = "${var.vpc_cidr_base}${lookup(var.admin_subnet_cidrs, format("zone%d", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
-  tags = "${merge(var.global_tags, map("Name", "admin_az${(count.index +1)}"))}"
+  tags = "${merge(var.global_tags,
+                  map("Name", "admin_az${(count.index +1)}"),
+                  var.admin_subnet_tags)}"
 }
 
 output "aws_subnet_admin_ids" {
@@ -25,7 +27,9 @@ resource "aws_subnet" "public" {
   vpc_id = "${aws_vpc.default.id}"
   cidr_block = "${var.vpc_cidr_base}${lookup(var.public_subnet_cidrs, format("zone%d", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
-  tags = "${merge(var.global_tags, map("Name", "public_az${(count.index +1)}"))}"
+  tags = "${merge(var.global_tags,
+                  map("Name", "public_az${(count.index +1)}"),
+                  var.public_subnet_tags)}"
 }
 
 output "aws_subnet_public_ids" {
@@ -43,7 +47,9 @@ resource "aws_subnet" "private_prod" {
   vpc_id = "${aws_vpc.default.id}"
   cidr_block = "${var.vpc_cidr_base}${lookup(var.private_prod_subnet_cidrs, format("zone%d", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
-  tags = "${merge(var.global_tags, map("Name", "private_prod_az${(count.index +1)}"))}"
+  tags = "${merge(var.global_tags,
+                  map("Name", "private_prod_az${(count.index +1)}"),
+                  var.private_prod_subnet_tags)}"
 }
 
 output "aws_subnet_private_prod_ids" {
@@ -61,7 +67,9 @@ resource "aws_subnet" "private_working" {
   vpc_id = "${aws_vpc.default.id}"
   cidr_block = "${var.vpc_cidr_base}${lookup(var.private_working_subnet_cidrs, format("zone%d", count.index))}"
   availability_zone = "${element(split(", ", var.aws_azs), count.index)}"
-  tags = "${merge(var.global_tags, map("Name", "private_working_az${(count.index +1)}"))}"
+  tags = "${merge(var.global_tags,
+                  map("Name", "private_working_az${(count.index +1)}"),
+                  var.private_working_subnet_tags)}"
 }
 
 output "aws_subnet_private_working_ids" {

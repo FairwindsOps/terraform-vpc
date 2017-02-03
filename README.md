@@ -109,6 +109,17 @@ variable "single_nat_gateway" {
 
 To use a single NAT gateway, set `multi_az_nat_gateway = 0` and `single_nat_gateway = 1` in `terraform.tfvars`
 
+### Tagging
+
+The subnets created can include custom tags by setting variables of the form `SUBNETNAME_subnet_tags`.
+
+| Subnet          | Variable                    |
+| --------------- | --------------------------- |
+| admin           | admin_subnet_tags           |
+| public          | public_subnet_tags          |
+| private_prod    | private_prod_subnet_tags    |
+| private_working | private_working_subnet_tags |
+
 ## Testing
 
 This repo contains a few `.tfvars.example` files in the root illustrating different module usage configuration patterns. Each `.tfvars.example` file has a corresponding tfplan output file under `test/fixtures` representing the expected output. The project Makefile includes targets for installing a specific version of Terraform and comparing results of a `terraform plan` against expected output files.
