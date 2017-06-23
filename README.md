@@ -88,7 +88,7 @@ az_count = 4
 
 `multi_az_nat_gateway`
 
-Ideally, in a multi-AZ setup, there is at least one NAT Gateway residing in each availability zone.  This allows the outbound traffic from private subnets in each AZ to function independently, and allow for some resiliance in-case of an AZ outage.
+Ideally, in a multi-AZ setup, there is at least one NAT Gateway residing in each availability zone.  This allows the outbound traffic from private subnets in each AZ to function independently, and allow for some resilience in-case of an AZ outage.
 
 `single_nat_gateway`
 
@@ -108,6 +108,26 @@ variable "single_nat_gateway" {
 ```
 
 To use a single NAT gateway, set `multi_az_nat_gateway = 0` and `single_nat_gateway = 1` in `terraform.tfvars`
+
+### Tagging
+
+The subnets created can include custom tags by setting variables of the form `SUBNETNAME_subnet_tags`.
+
+| Subnet          | Variable                    |
+| --------------- | --------------------------- |
+| admin           | admin_subnet_tags           |
+| public          | public_subnet_tags          |
+| private_prod    | private_prod_subnet_tags    |
+| private_working | private_working_subnet_tags |
+
+The routing tables can include custom tags by setting variables of the form `TABLENAME_route_table_tags`.
+
+| Route Table | Variable                 |
+| ----------- | ------------------------ |
+| public      | public_route_table_tags  |
+| private     | private_route_table_tags |
+
+The internet gateway can be tagged with the variable `internet_gateway_tags`
 
 ## Testing
 

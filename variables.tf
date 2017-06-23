@@ -66,6 +66,11 @@ variable "admin_subnet_cidrs" {
   }
 }
 
+variable "admin_subnet_tags" {
+  description = "Tags to apply to the admin subnet"
+  default = {}
+}
+
 variable "public_subnet_parent_cidr" {
   description = "parent CIDR for the public subnets"
   default = ".32.0/19"
@@ -79,6 +84,11 @@ variable "public_subnet_cidrs" {
     zone2 = ".48.0/21"
     zone3 = ".56.0/21"
   }
+}
+
+variable "public_subnet_tags" {
+  description = "Tags to apply to the public subnets"
+  default = {}
 }
 
 variable "private_prod_subnet_parent_cidr" {
@@ -96,6 +106,11 @@ variable "private_prod_subnet_cidrs" {
   }
 }
 
+variable "private_prod_subnet_tags" {
+  description = "Tags to apply to the private production subnets"
+  default = {}
+}
+
 variable "private_working_subnet_parent_cidr" {
   description = "parent CIDR for the private working subnets"
   default = ".96.0/19"
@@ -111,6 +126,11 @@ variable "private_working_subnet_cidrs" {
   }
 }
 
+variable "private_working_subnet_tags" {
+  description = "Tags to apply to the private working subnets"
+  default = {}
+}
+
 variable "multi_az_nat_gateway" {
   description = "place a NAT gateway in each AZ"
   default = 1
@@ -119,6 +139,21 @@ variable "multi_az_nat_gateway" {
 variable "single_nat_gateway" {
   description = "use a single NAT gateway to serve outbound traffic for all AZs"
   default = 0
+}
+
+variable "internet_gateway_tags" {
+  description = "Tags to apply to the internet gateway"
+  default = {}
+}
+
+variable "public_route_table_tags" {
+  description = "Tags to apply to the public route table"
+  default = {}
+}
+
+variable "private_route_table_tags" {
+  description = "Tags to apply to the private route table"
+  default = {}
 }
 
 variable "global_tags" {
