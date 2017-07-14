@@ -6,7 +6,7 @@ This module has been tested with Terraform version 0.7.9.
 
 ## Example VPC Layout: 3 AZ's
 
-![Example VPC: 3AZ](https://dl.dropboxusercontent.com/s/0z9vrjrjsb51cq5/example-vpc-3AZ.png)
+![Example VPC: 3AZ](vpc_layout.png)
 
 ## Usage
 
