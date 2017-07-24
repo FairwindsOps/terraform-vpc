@@ -1,3 +1,7 @@
+environment:
+  GITHUB_REPOSITORY: terraform-vpc
+  GITHUB_ORGANIZATION: reactiveops
+
 dependencies:
   cache_directories:
     - bin
@@ -7,3 +11,13 @@ dependencies:
 test:
   override:
     - make test TF_PLATFORM=linux
+
+
+deployment:
+  release:
+    tag: /v.*'
+    owner: reactiveops
+    commands:
+      - git fetch --tags
+      - curl -O https://raw.githubusercontent.com/reactiveops/release.sh/v0.0.2/release
+      - /bin/bash release
