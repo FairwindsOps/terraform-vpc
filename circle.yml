@@ -12,12 +12,12 @@ test:
   override:
     - make test TF_PLATFORM=linux
 
-
 deployment:
   release:
-    tag: '/v.*'
+    tag: /v[0-9]+(\.[0-9]+)*/
     owner: reactiveops
     commands:
+      # Github release
       - git fetch --tags
       - curl -O https://raw.githubusercontent.com/reactiveops/release.sh/v0.0.2/release
       - /bin/bash release
