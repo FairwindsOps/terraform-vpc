@@ -15,7 +15,7 @@ test:
 
 deployment:
   release:
-    tag: /v.*'
+    tag: '/v.*'
     owner: reactiveops
     commands:
       - git fetch --tags
