@@ -16,10 +16,6 @@ This module has been tested with Terraform version 0.7.9.
 module "vpc" {
   source = "git::ssh://git@github.com/reactiveops/terraform-vpc.git?ref=2.0.2"
 
-  aws_access_key = "${var.aws_access_key}"
-  aws_secret_key = "${var.aws_secret_key}"
-  aws_region = "${var.aws_region}"
-
   az_count =  "${var.az_count}"
   aws_azs = "${var.aws_azs}"
 
@@ -66,10 +62,8 @@ The following subnets will be created in each AZ:
 
 * Public
   * Resources requiring public IP addresses such as VPN/bastion instances and Elastic Load Balancers.
-* Private working
-  * Internal non-production resources such as web servers and database instances.
-* Private production
-  * Internal production resources such as web servers and database instances.
+* Private
+  * Internal resources such as web servers and database instances.
 * Private admin
   * Internal shared administrative resources such as build server instances.
 
@@ -117,8 +111,7 @@ The subnets created can include custom tags by setting variables of the form `SU
 | --------------- | --------------------------- |
 | admin           | admin_subnet_tags           |
 | public          | public_subnet_tags          |
-| private_prod    | private_prod_subnet_tags    |
-| private_working | private_working_subnet_tags |
+| private         | private_subnet_tags         |
 
 The routing tables can include custom tags by setting variables of the form `TABLENAME_route_table_tags`.
 

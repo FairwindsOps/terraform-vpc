@@ -12,10 +12,6 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "aws_region" {}
-
 variable "aws_vpc_name" {
   default = "vpc"
 }
@@ -91,13 +87,13 @@ variable "public_subnet_tags" {
   default = {}
 }
 
-variable "private_prod_subnet_parent_cidr" {
-  description = "parent CIDR for the private production subnets"
+variable "private_subnet_parent_cidr" {
+  description = "parent CIDR for the private subnets"
   default = ".64.0/19"
 }
 
-variable "private_prod_subnet_cidrs" {
-  description = "CIDRs for the private production subnets"
+variable "private_subnet_cidrs" {
+  description = "CIDRs for the private subnets"
   default = {
     zone0 = ".64.0/21"
     zone1 = ".72.0/21"
@@ -106,28 +102,8 @@ variable "private_prod_subnet_cidrs" {
   }
 }
 
-variable "private_prod_subnet_tags" {
-  description = "Tags to apply to the private production subnets"
-  default = {}
-}
-
-variable "private_working_subnet_parent_cidr" {
-  description = "parent CIDR for the private working subnets"
-  default = ".96.0/19"
-}
-
-variable "private_working_subnet_cidrs" {
-  description = "CIDRs for the private working subnets"
-  default = {
-    zone0 = ".96.0/21"
-    zone1 = ".104.0/21"
-    zone2 = ".112.0/21"
-    zone3 = ".120.0/21"
-  }
-}
-
-variable "private_working_subnet_tags" {
-  description = "Tags to apply to the private working subnets"
+variable "private_subnet_tags" {
+  description = "Tags to apply to the private subnets"
   default = {}
 }
 
