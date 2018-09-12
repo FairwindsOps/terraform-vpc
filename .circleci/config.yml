@@ -23,27 +23,27 @@ jobs:
             - bin
       - run: make test TF_PLATFORM=linux
 
-  # release:
-  #   environment: *env_vars
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Run release script
-  #         command: |
-  #           git fetch --tags
-  #           curl -O https://raw.githubusercontent.com/reactiveops/release.sh/v0.0.2/release
-  #           /bin/bash release
+  release:
+    environment: *env_vars
+    steps:
+      - checkout
+      - run:
+          name: Run release script
+          command: |
+            git fetch --tags
+            curl -O https://raw.githubusercontent.com/reactiveops/release.sh/v0.0.2/release
+            /bin/bash release
 
 workflows:
   version: 2
   test:
     jobs:
       - test
-  # release:
-  #   jobs:
-  #     - release:
-  #         filters:
-  #           branches:
-  #             ignore: /.*/
-  #           tags:
-  #             only: /^v.*/
+  release:
+    jobs:
+      - release:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
