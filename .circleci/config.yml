@@ -24,6 +24,8 @@ jobs:
       - run: make test TF_PLATFORM=linux
 
   release:
+    docker:
+      - image: circleci/buildpack-deps:stretch
     environment: *env_vars
     steps:
       - checkout
