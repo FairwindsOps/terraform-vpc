@@ -1,0 +1,49 @@
+version: 2
+
+references:
+  env_vars: &env_vars
+    GITHUB_REPOSITORY: terraform-vpc
+    GITHUB_ORGANIZATION: reactiveops
+    TF_VERSION: 0.11.8
+
+jobs:
+  test:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    environment: *env_vars
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ .Environment.TF_VERSION }}
+      - run: make requirements TF_PLATFORM=linux
+      - save_cache:
+          key: dependency-cache-{{ .Environment.TF_VERSION }}
+          paths:
+            - bin
+      - run: make test TF_PLATFORM=linux
+
+  # release:
+  #   environment: *env_vars
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Run release script
+  #         command: |
+  #           git fetch --tags
+  #           curl -O https://raw.githubusercontent.com/reactiveops/release.sh/v0.0.2/release
+  #           /bin/bash release
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+  # release:
+  #   jobs:
+  #     - release:
+  #         filters:
+  #           branches:
+  #             ignore: /.*/
+  #           tags:
+  #             only: /^v.*/

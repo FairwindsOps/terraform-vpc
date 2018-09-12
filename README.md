@@ -2,7 +2,7 @@
 
 This Terraform module creates a configurable general purpose [Amazon Web Services VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html). The module offers an opinionated but flexible network topography geared towards general purpose situations with separate public and private subnets. Each VPC can be configured to support one to four availability zones. Private subnet [NAT](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat.html) can be configured via [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html). A single [Internet Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) is created to provide public routing for public subnets. The module does not configure a bastion or VPN instance for private subnet instance access.
 
-This module has been tested with Terraform version 0.7.9.
+This module has been tested with Terraform version 0.11.8
 
 ## Example VPC Layout: 3 AZ's
 
@@ -108,6 +108,22 @@ variable "single_nat_gateway" {
 ```
 
 To use a single NAT gateway, set `multi_az_nat_gateway = 0` and `single_nat_gateway = 1` in `terraform.tfvars`
+
+### S3 VPC Gateway Endpoint
+
+[VPC Gateway Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html) route traffic to S3 or DynamoDB services over private networks avoiding NAT gateways and associated data processing charges on private subnets. Gateway endpoints are similar to NAT and Internet Gateways. There is a gateway endpoint resource and route table entries to direct specific traffic to them.
+
+Setting TF variable `enable_s3_vpc_endpoint` to a truthy value creates an S3 VPC gateway endpoint and adds routes to all private subnet route tables. With this enabled all S3 traffic will route over private networks.
+
+Considerations when enabling:
+
+* There is no additional cost for having this enabled.
+* **ENABLING WILL DISRUPT CONNECTIONS** When initially enabling this any inflight S3 connections in the VPC [will be interrupted](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html).
+* [DNS resolution must be enabled for the VPC].(https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html#vpc-endpoints-limitations)
+
+#### Endpoint S3 policy
+
+Each endpoint has an associated IAM style policy attached. This module's default policy allows all access but can be overriden via TF variable `s3_vpc_endpoint_policy`. S3 bucket and IAM policies still apply. The endpoint policy is an additional limitation for connections through the endpoint.
 
 ### Tagging
 

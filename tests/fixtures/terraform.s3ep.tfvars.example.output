@@ -434,8 +434,24 @@ Terraform will perform the following actions:
       tags.Managed By:                  "Terraform"
       tags.Name:                        "vpc-module-test"
 [0m
+[0m[32m  [32m+[0m [32maws_vpc_endpoint.s3_endpoint
+[0m      id:                               <computed>
+      cidr_blocks.#:                    <computed>
+      dns_entry.#:                      <computed>
+      network_interface_ids.#:          <computed>
+      policy:                           "{\"Statement\":[{\"Action\":\"*\",\"Effect\":\"Allow\",\"Principal\":\"*\",\"Resource\":\"*\",\"Sid\":\"FullAccess\"}],\"Version\":\"2008-10-17\"}"
+      prefix_list_id:                   <computed>
+      private_dns_enabled:              "false"
+      route_table_ids.#:                <computed>
+      security_group_ids.#:             <computed>
+      service_name:                     "com.amazonaws.us-east-1.s3"
+      state:                            <computed>
+      subnet_ids.#:                     <computed>
+      vpc_endpoint_type:                "Gateway"
+      vpc_id:                           "${aws_vpc.default.id}"
 [0m
-[0m[1mPlan:[0m 40 to add, 0 to change, 0 to destroy.[0m
+[0m
+[0m[1mPlan:[0m 41 to add, 0 to change, 0 to destroy.[0m
 
 ------------------------------------------------------------------------
 
