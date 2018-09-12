@@ -141,6 +141,29 @@ variable "single_nat_gateway" {
   default = 0
 }
 
+variable "enable_s3_vpc_endpoint" {
+  description = "Create a VPC S3 gateway endpoint and private subnet route entries. This will route S3 traffic over private network rather than over NAT gateways."
+  default = "false"
+}
+
+variable "s3_vpc_endpoint_policy" {
+  description = "S3 VPC endpoint gateway policy document. Bucket and IAM policies still apply."
+  default = <<POLICY
+{
+    "Statement": [
+        {   
+            "Sid": "FullAccess",
+            "Action": "*",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Principal": "*"
+        }
+    ],
+    "Version": "2008-10-17"
+}
+POLICY
+}
+
 variable "internet_gateway_tags" {
   description = "Tags to apply to the internet gateway"
   default = {}
