@@ -121,6 +121,10 @@ Considerations when enabling:
 * **ENABLING WILL DISRUPT CONNECTIONS** When initially enabling this any inflight S3 connections in the VPC [will be interrupted](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html).
 * [DNS resolution must be enabled for the VPC].(https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html#vpc-endpoints-limitations)
 
+#### Additional Route Table Routes
+
+By default when enabled all private subnet route tables will get a route for the S3 endpoint. You can pass additional route table ids for additional routes to be created. This is useful for route tables managed by Kops for example.
+
 #### Endpoint S3 policy
 
 Each endpoint has an associated IAM style policy attached. This module's default policy allows all access but can be overriden via TF variable `s3_vpc_endpoint_policy`. S3 bucket and IAM policies still apply. The endpoint policy is an additional limitation for connections through the endpoint.

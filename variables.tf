@@ -164,6 +164,12 @@ variable "s3_vpc_endpoint_policy" {
 POLICY
 }
 
+variable "s3_vpc_endpoint_route_table_ids" {
+  description = "By default routes to the s3 endpoint are added for private subnet route tables. Pass additional route table ids that require routes."
+  type = "list"
+  default = []
+}
+
 variable "internet_gateway_tags" {
   description = "Tags to apply to the internet gateway"
   default = {}
