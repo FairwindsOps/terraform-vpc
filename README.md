@@ -16,8 +16,6 @@ This module has been tested with Terraform version 0.11.8
 module "vpc" {
   source = "git::ssh://git@github.com/reactiveops/terraform-vpc.git?ref=2.0.2"
 
-  aws_access_key = "${var.aws_access_key}"
-  aws_secret_key = "${var.aws_secret_key}"
   aws_region = "${var.aws_region}"
 
   az_count =  "${var.az_count}"
@@ -31,8 +29,6 @@ module "vpc" {
 * Create the required variables either in `main.tf` or a separate `variables.tf` file:
 
 ```
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
 variable "aws_region" {}
 
 variable "aws_azs" {}
@@ -155,12 +151,7 @@ This repo contains a few `.tfvars.example` files in the root illustrating differ
 
 ### Setup
 
-Running `make test` requires an actual AWS account for plan generation. The AWS account used requires read-only access to VPC/EC2 resources. No changes are applied. Credentials can be set via environment variables.
-
-```
-export TF_VAR_aws_access_key=XXXXXXXXXXXXXXXXX
-export TF_VAR_aws_secret_key=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
+Running `make test` requires an actual AWS account for plan generation. The AWS account used requires read-only access to VPC/EC2 resources. No changes are applied. Credentials should be inferred from your awscli config, usually found in `~/.aws/config`.
 
 ### Executing tests
 
