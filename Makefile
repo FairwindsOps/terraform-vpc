@@ -15,6 +15,7 @@ requirements: bin/terraform ## Install required software
 
 test: requirements ## Execute all tests
 	@echo "Temp directory: $(TEMPDIR)"
+	@cp tests/provider.tf temp_provider.tf
 	@bin/terraform init > /dev/null 2>&1
 	@for i in `find . -name terraform.\*.tfvars.example`; do \
 		bin/terraform plan -var-file $$i 1> $(TEMPDIR)/$$i.output && \
