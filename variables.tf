@@ -12,8 +12,6 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
 variable "aws_region" {}
 
 variable "aws_vpc_name" {
