@@ -4,6 +4,8 @@ This Terraform module creates a configurable general purpose [Amazon Web Service
 
 This module has been tested with Terraform version 0.11.8
 
+**Want to learn more?** ReactiveOps holds [office hours on Zoom](https://zoom.us/j/951540265) the first Friday of every month, at 12pm Eastern. You can also reach out via email at `opensource@reactiveops.com`
+
 ## Example VPC Layout: 3 AZ's
 
 ![Example VPC: 3AZ](vpc_layout.png)
