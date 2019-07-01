@@ -27,7 +27,7 @@ output "aws_vpc_cidr" {
 
 # NAT Gateways & EIP
 resource "aws_nat_gateway" "nat_gateway" {
-  count         = 3
+  count         = "${local._count_of_availability_zones}"
   subnet_id     = "${element(aws_subnet.public.*.id, count.index)}"
   allocation_id = "${element(aws_eip.mod_nat.*.id, count.index)}"
   tags          = "${local.tags}"
@@ -71,7 +71,7 @@ resource "aws_route" "public_internet_gateway" {
 
 ## Private
 resource "aws_route_table" "private" {
-  count  = 3
+  count  = "${local._count_of_availability_zones}"
   vpc_id = "${aws_vpc.kube_vpc.id}"
 
   tags = "${merge(local.tags, map("Name", "private_az${(count.index +1)}"))}"
@@ -82,7 +82,7 @@ output "aws_route_table_private_ids" {
 }
 
 resource "aws_route" "private_nat_gateway" {
-  count                  = 3
+  count                  = "${local._count_of_availability_zones}"
   route_table_id         = "${element(aws_route_table.private.*.id, count.index)}"
   nat_gateway_id         = "${element(aws_nat_gateway.nat_gateway.*.id, count.index)}"
   destination_cidr_block = "0.0.0.0/0"

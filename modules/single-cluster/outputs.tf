@@ -5,7 +5,3 @@ output "provisioned_cidrs" {
     admin_cidr_subnets   = "${local.admin_cidr_subnets}"
   }
 }
-
-output "cidrs_for_kops" {
-  value = "${local.kops_subnets}"
-}
