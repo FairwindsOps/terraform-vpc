@@ -55,7 +55,7 @@ variable "extra_tags" {
 locals {
   default_tags = {
     "ManagedVia" = "Terraform"
-    "Author"     = "ReactiveOps"
+    "Author"     = "Fairwinds"
   }
 
   tags             = "${merge(local.default_tags, var.extra_tags)}"

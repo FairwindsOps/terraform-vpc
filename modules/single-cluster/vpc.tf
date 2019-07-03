@@ -30,7 +30,7 @@ resource "aws_nat_gateway" "nat_gateway" {
   count         = "${local._count_of_availability_zones}"
   subnet_id     = "${element(aws_subnet.public.*.id, count.index)}"
   allocation_id = "${element(aws_eip.mod_nat.*.id, count.index)}"
-  tags          = "${local.tags}"
+  tags          = "${merge(local.tags, map("Name", "Kubernetes NAT Gateway"))}"
   depends_on    = ["aws_internet_gateway.default", "aws_eip.mod_nat", "aws_subnet.public"]
 
   lifecycle = {
