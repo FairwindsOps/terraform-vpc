@@ -14,7 +14,7 @@ This module has been tested with Terraform version 0.11.8
 
 ```
 module "vpc" {
-  source = "git::ssh://git@github.com/fairwinds/terraform-vpc.git?ref=2.0.2"
+  source = "git::ssh://git@github.com/FairwindsOps/terraform-vpc.git?ref=2.0.2"
 
   aws_region = "${var.aws_region}"
 
