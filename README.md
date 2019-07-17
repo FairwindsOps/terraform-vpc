@@ -145,15 +145,17 @@ The routing tables can include custom tags by setting variables of the form `TAB
 
 The internet gateway can be tagged with the variable `internet_gateway_tags`
 
-## Testing
+## Contributing
+Please read the [code of conduct](CODE_OF_CONDUCT.md).
 
+### Testing
 This repo contains a few `.tfvars.example` files in the root illustrating different module usage configuration patterns. Each `.tfvars.example` file has a corresponding tfplan output file under `test/fixtures` representing the expected output. The project Makefile includes targets for installing a specific version of Terraform and comparing results of a `terraform plan` against expected output files.
 
-### Setup
+#### Setup
 
 Running `make test` requires an actual AWS account for plan generation. The AWS account used requires read-only access to VPC/EC2 resources. No changes are applied. Credentials should be inferred from your awscli config, usually found in `~/.aws/config`.
 
-### Executing tests
+#### Executing tests
 
 ```
 > make test
