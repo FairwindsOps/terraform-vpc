@@ -3,7 +3,7 @@ version: 2
 references:
   env_vars: &env_vars
     GITHUB_REPOSITORY: terraform-vpc
-    GITHUB_ORGANIZATION: fairwinds
+    GITHUB_ORGANIZATION: FairwindsOps
     TF_VERSION: 0.11.8
 
 jobs:
