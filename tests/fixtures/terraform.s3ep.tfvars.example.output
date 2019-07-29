@@ -496,9 +496,11 @@ Terraform will perform the following actions:
       cidr_blocks.#:                    <computed>
       dns_entry.#:                      <computed>
       network_interface_ids.#:          <computed>
+      owner_id:                         <computed>
       policy:                           "{\"Statement\":[{\"Action\":\"*\",\"Effect\":\"Allow\",\"Principal\":\"*\",\"Resource\":\"*\",\"Sid\":\"FullAccess\"}],\"Version\":\"2008-10-17\"}"
       prefix_list_id:                   <computed>
       private_dns_enabled:              "false"
+      requester_managed:                <computed>
       route_table_ids.#:                <computed>
       security_group_ids.#:             <computed>
       service_name:                     "com.amazonaws.us-east-1.s3"
