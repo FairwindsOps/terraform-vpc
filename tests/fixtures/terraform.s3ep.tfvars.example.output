@@ -18,8 +18,11 @@ Terraform will perform the following actions:
       domain:                           <computed>
       instance:                         <computed>
       network_interface:                <computed>
+      private_dns:                      <computed>
       private_ip:                       <computed>
+      public_dns:                       <computed>
       public_ip:                        <computed>
+      public_ipv4_pool:                 <computed>
       tags.%:                           "2"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -32,8 +35,11 @@ Terraform will perform the following actions:
       domain:                           <computed>
       instance:                         <computed>
       network_interface:                <computed>
+      private_dns:                      <computed>
       private_ip:                       <computed>
+      public_dns:                       <computed>
       public_ip:                        <computed>
+      public_ipv4_pool:                 <computed>
       tags.%:                           "2"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -46,8 +52,11 @@ Terraform will perform the following actions:
       domain:                           <computed>
       instance:                         <computed>
       network_interface:                <computed>
+      private_dns:                      <computed>
       private_ip:                       <computed>
+      public_dns:                       <computed>
       public_ip:                        <computed>
+      public_ipv4_pool:                 <computed>
       tags.%:                           "2"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -55,6 +64,7 @@ Terraform will perform the following actions:
 [0m
 [0m[32m  [32m+[0m [32maws_internet_gateway.default
 [0m      id:                               <computed>
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -152,6 +162,7 @@ Terraform will perform the following actions:
 [0m
 [0m[32m  [32m+[0m [32maws_route_table.private[0]
 [0m      id:                               <computed>
+      owner_id:                         <computed>
       propagating_vgws.#:               <computed>
       route.#:                          <computed>
       tags.%:                           "3"
@@ -162,6 +173,7 @@ Terraform will perform the following actions:
 [0m
 [0m[32m  [32m+[0m [32maws_route_table.private[1]
 [0m      id:                               <computed>
+      owner_id:                         <computed>
       propagating_vgws.#:               <computed>
       route.#:                          <computed>
       tags.%:                           "3"
@@ -172,6 +184,7 @@ Terraform will perform the following actions:
 [0m
 [0m[32m  [32m+[0m [32maws_route_table.private[2]
 [0m      id:                               <computed>
+      owner_id:                         <computed>
       propagating_vgws.#:               <computed>
       route.#:                          <computed>
       tags.%:                           "3"
@@ -182,6 +195,7 @@ Terraform will perform the following actions:
 [0m
 [0m[32m  [32m+[0m [32maws_route_table.public
 [0m      id:                               <computed>
+      owner_id:                         <computed>
       propagating_vgws.#:               <computed>
       route.#:                          <computed>
       tags.%:                           "3"
@@ -255,10 +269,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1a"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.0.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -270,10 +286,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1d"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.8.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -285,10 +303,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1c"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.16.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -300,10 +320,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1a"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.64.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -315,10 +337,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1d"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.72.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -330,10 +354,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1c"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.80.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -345,10 +371,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1a"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.96.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -360,10 +388,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1d"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.104.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -375,10 +405,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1c"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.112.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -390,10 +422,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1a"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.32.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -405,10 +439,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1d"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.40.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -420,10 +456,12 @@ Terraform will perform the following actions:
       arn:                              <computed>
       assign_ipv6_address_on_creation:  "false"
       availability_zone:                "us-east-1c"
+      availability_zone_id:             <computed>
       cidr_block:                       "10.21.48.0/21"
       ipv6_cidr_block:                  <computed>
       ipv6_cidr_block_association_id:   <computed>
       map_public_ip_on_launch:          "false"
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -447,6 +485,7 @@ Terraform will perform the following actions:
       ipv6_association_id:              <computed>
       ipv6_cidr_block:                  <computed>
       main_route_table_id:              <computed>
+      owner_id:                         <computed>
       tags.%:                           "3"
       tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
@@ -457,9 +496,11 @@ Terraform will perform the following actions:
       cidr_blocks.#:                    <computed>
       dns_entry.#:                      <computed>
       network_interface_ids.#:          <computed>
+      owner_id:                         <computed>
       policy:                           "{\"Statement\":[{\"Action\":\"*\",\"Effect\":\"Allow\",\"Principal\":\"*\",\"Resource\":\"*\",\"Sid\":\"FullAccess\"}],\"Version\":\"2008-10-17\"}"
       prefix_list_id:                   <computed>
       private_dns_enabled:              "false"
+      requester_managed:                <computed>
       route_table_ids.#:                <computed>
       security_group_ids.#:             <computed>
       service_name:                     "com.amazonaws.us-east-1.s3"
