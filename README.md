@@ -2,7 +2,7 @@
 
 This Terraform module creates a configurable general purpose [Amazon Web Services VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html). The module offers an opinionated but flexible network topography geared towards general purpose situations with separate public and private subnets. Each VPC can be configured to support one to four availability zones. Private subnet [NAT](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat.html) can be configured via [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html). A single [Internet Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) is created to provide public routing for public subnets. The module does not configure a bastion or VPN instance for private subnet instance access.
 
-This module has been tested with Terraform version 0.11.8
+This module has been tested with Terraform version 0.12.9
 
 ## Example VPC Layout: 3 AZ's
 
@@ -145,15 +145,17 @@ The routing tables can include custom tags by setting variables of the form `TAB
 
 The internet gateway can be tagged with the variable `internet_gateway_tags`
 
-## Testing
+## Contributing
+Please read the [code of conduct](CODE_OF_CONDUCT.md).
 
+### Testing
 This repo contains a few `.tfvars.example` files in the root illustrating different module usage configuration patterns. Each `.tfvars.example` file has a corresponding tfplan output file under `test/fixtures` representing the expected output. The project Makefile includes targets for installing a specific version of Terraform and comparing results of a `terraform plan` against expected output files.
 
-### Setup
+#### Setup
 
 Running `make test` requires an actual AWS account for plan generation. The AWS account used requires read-only access to VPC/EC2 resources. No changes are applied. Credentials should be inferred from your awscli config, usually found in `~/.aws/config`.
 
-### Executing tests
+#### Executing tests
 
 ```
 > make test

@@ -1,4 +1,4 @@
-#Copyright 2017 Reactive Ops Inc.
+#Copyright 2019 Fairwinds Inc.
 #
 #Licensed under the Apache License, Version 2.0 (the “License”);
 #you may not use this file except in compliance with the License.
@@ -188,7 +188,7 @@ variable "global_tags" {
   description = "AWS tags that will be added to all resources managed herein"
   type = map(string)
   default = {
-    "Author" = "ReactiveOps"
+    "Author" = "Fairwinds"
     "Managed By" = "Terraform"
   }
 }

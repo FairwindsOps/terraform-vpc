@@ -24,7 +24,7 @@ Terraform will perform the following actions:
       public_ip:                        <computed>
       public_ipv4_pool:                 <computed>
       tags.%:                           "2"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       vpc:                              "true"
 [0m
@@ -32,7 +32,7 @@ Terraform will perform the following actions:
 [0m      id:                               <computed>
       owner_id:                         <computed>
       tags.%:                           "3"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       tags.Name:                        "vpc-module-test"
       vpc_id:                           "${aws_vpc.default.id}"
@@ -45,7 +45,7 @@ Terraform will perform the following actions:
       public_ip:                        <computed>
       subnet_id:                        "${element(aws_subnet.public.*.id, count.index)}"
       tags.%:                           "2"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
 [0m
 [0m[32m  [32m+[0m [32maws_route.private_nat_gateway
@@ -82,7 +82,7 @@ Terraform will perform the following actions:
       propagating_vgws.#:               <computed>
       route.#:                          <computed>
       tags.%:                           "3"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       tags.Name:                        "private_az1"
       vpc_id:                           "${aws_vpc.default.id}"
@@ -93,7 +93,7 @@ Terraform will perform the following actions:
       propagating_vgws.#:               <computed>
       route.#:                          <computed>
       tags.%:                           "3"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       tags.Name:                        "public"
       vpc_id:                           "${aws_vpc.default.id}"
@@ -130,7 +130,7 @@ Terraform will perform the following actions:
       map_public_ip_on_launch:          "false"
       owner_id:                         <computed>
       tags.%:                           "3"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       tags.Name:                        "admin_az1"
       vpc_id:                           "${aws_vpc.default.id}"
@@ -147,7 +147,7 @@ Terraform will perform the following actions:
       map_public_ip_on_launch:          "false"
       owner_id:                         <computed>
       tags.%:                           "3"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       tags.Name:                        "private_prod_az1"
       vpc_id:                           "${aws_vpc.default.id}"
@@ -164,7 +164,7 @@ Terraform will perform the following actions:
       map_public_ip_on_launch:          "false"
       owner_id:                         <computed>
       tags.%:                           "3"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       tags.Name:                        "private_working_az1"
       vpc_id:                           "${aws_vpc.default.id}"
@@ -181,7 +181,7 @@ Terraform will perform the following actions:
       map_public_ip_on_launch:          "false"
       owner_id:                         <computed>
       tags.%:                           "3"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       tags.Name:                        "public_az1"
       vpc_id:                           "${aws_vpc.default.id}"
@@ -205,7 +205,7 @@ Terraform will perform the following actions:
       main_route_table_id:              <computed>
       owner_id:                         <computed>
       tags.%:                           "3"
-      tags.Author:                      "ReactiveOps"
+      tags.Author:                      "Fairwinds"
       tags.Managed By:                  "Terraform"
       tags.Name:                        "vpc-module-test"
 [0m
