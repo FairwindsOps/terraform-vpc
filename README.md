@@ -14,14 +14,14 @@ This module has been tested with Terraform version 0.11.8
 
 ```
 module "vpc" {
-  source = "git::ssh://git@github.com/reactiveops/terraform-vpc.git?ref=2.0.2"
+  source = "git::ssh://git@github.com/reactiveops/terraform-vpc.git?ref=3.0.0"
 
-  aws_region = "${var.aws_region}"
+  aws_region = var.aws_region
 
-  az_count =  "${var.az_count}"
-  aws_azs = "${var.aws_azs}"
+  az_count =  var.az_count
+  aws_azs = var.aws_azs
 
-  vpc_cidr_base = "${var.vpc_cidr_base}"
+  vpc_cidr_base = var.vpc_cidr_base
 
 }
 ```

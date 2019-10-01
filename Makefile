@@ -3,7 +3,7 @@
 
 TEMPDIR := $(shell mktemp -d)
 
-TF_VERSION = 0.11.8
+TF_VERSION = 0.12.9
 TF_PLATFORM = darwin
 SHELL := /bin/bash
 
