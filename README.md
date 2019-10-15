@@ -2,7 +2,7 @@
 
 This Terraform module creates a configurable general purpose [Amazon Web Services VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html). The module offers an opinionated but flexible network topography geared towards general purpose situations with separate public and private subnets. Each VPC can be configured to support one to four availability zones. Private subnet [NAT](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat.html) can be configured via [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html). A single [Internet Gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) is created to provide public routing for public subnets. The module does not configure a bastion or VPN instance for private subnet instance access.
 
-This module has been tested with Terraform version 0.11.8
+This module has been tested with Terraform version 0.12.9
 
 ## Example VPC Layout: 3 AZ's
 
@@ -14,14 +14,14 @@ This module has been tested with Terraform version 0.11.8
 
 ```
 module "vpc" {
-  source = "git::ssh://git@github.com/FairwindsOps/terraform-vpc.git?ref=2.0.2"
+  source = "git::ssh://git@github.com/reactiveops/terraform-vpc.git?ref=3.0.0"
 
-  aws_region = "${var.aws_region}"
+  aws_region = var.aws_region
 
-  az_count =  "${var.az_count}"
-  aws_azs = "${var.aws_azs}"
+  az_count =  var.az_count
+  aws_azs = var.aws_azs
 
-  vpc_cidr_base = "${var.vpc_cidr_base}"
+  vpc_cidr_base = var.vpc_cidr_base
 
 }
 ```
