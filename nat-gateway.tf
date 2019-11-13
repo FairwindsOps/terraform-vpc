@@ -32,6 +32,6 @@ output "aws_nat_gateway_count" {
 }
 
 output "aws_nat_gateway_ids" {
-  value = [aws_nat_gateway.nat_gateway.*.id]
+  value = aws_nat_gateway.nat_gateway.*.id
 }
 
