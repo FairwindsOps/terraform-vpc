@@ -25,7 +25,7 @@ resource "aws_route_table" "public" {
 }
 
 output "aws_route_table_public_ids" {
-  value = [aws_route_table.public.id]
+  value = aws_route_table.public.id
 }
 
 resource "aws_route" "public_internet_gateway" {
@@ -48,7 +48,7 @@ resource "aws_route_table" "private" {
 }
 
 output "aws_route_table_private_ids" {
-  value = [aws_route_table.private.*.id]
+  value = aws_route_table.private.*.id
 }
 
 resource "aws_route" "private_nat_gateway" {

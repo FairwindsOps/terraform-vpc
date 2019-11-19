@@ -19,6 +19,6 @@ resource "aws_eip" "mod_nat" {
 }
 
 output "aws_eip_nat_ips" {
-  value = [aws_eip.mod_nat.*.public_ip]
+  value = aws_eip.mod_nat.*.public_ip
 }
 
