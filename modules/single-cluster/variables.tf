@@ -4,17 +4,17 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnets_list" {
-  type        = "list"
+  type        = list(string)
   description = "A list of the subnets to create for public subnets"
 }
 
 variable "private_subnets_list" {
-  type        = "list"
+  type        = list(string)
   description = "A list of the subnets to create for private subnets"
 }
 
 variable "admin_subnets_list" {
-  type        = "list"
+  type        = list(string)
   description = "A list of the subnets to create for admin subnets"
 }
 
@@ -46,7 +46,7 @@ variable "vpc_enable_classiclink" {
 
 ## Tagging Settings
 variable "extra_tags" {
-  type        = "map"
+  type        = map(string)
   description = "Map of tags to apply in addition to already predefined tags of the module."
   default     = {}
 }
@@ -58,8 +58,8 @@ locals {
     "Author"     = "Fairwinds"
   }
 
-  tags             = "${merge(local.default_tags, var.extra_tags)}"
-  avail_zones_list = "${split(",", var.availability_zones)}"
+  tags             = merge(local.default_tags, var.extra_tags)
+  avail_zones_list = split(",", var.availability_zones)
 }
 
 # Usage validation
@@ -70,20 +70,20 @@ locals {
 ##       subnets for public, private and admin subnet areas.
 ## The error for invalid usage is "Count is less than zero: -1"
 locals {
-  _count_of_availability_zones          = "${length(local.avail_zones_list)}"
-  _public_subnets_count_minus_az_count  = "${length(var.public_subnets_list) - local._count_of_availability_zones}"
-  _private_subnets_count_minus_az_count = "${length(var.private_subnets_list) - local._count_of_availability_zones}"
-  _admin_subnets_count_minus_az_count   = "${length(var.admin_subnets_list) - local._count_of_availability_zones}"
+  _count_of_availability_zones          = length(local.avail_zones_list)
+  _public_subnets_count_minus_az_count  = length(var.public_subnets_list) - local._count_of_availability_zones
+  _private_subnets_count_minus_az_count = length(var.private_subnets_list) - local._count_of_availability_zones
+  _admin_subnets_count_minus_az_count   = length(var.admin_subnets_list) - local._count_of_availability_zones
 }
 
 resource "null_resource" "validate_public_subnet_count_matches_availability_zone_count" {
-  count = "${local._public_subnets_count_minus_az_count == 0 ? 0 : -1}"
+  count = local._public_subnets_count_minus_az_count == 0 ? 0 : -1
 }
 
 resource "null_resource" "validate_private_subnet_count_matches_availability_zone_count" {
-  count = "${local._private_subnets_count_minus_az_count == 0 ? 0 : -1}"
+  count = local._private_subnets_count_minus_az_count == 0 ? 0 : -1
 }
 
 resource "null_resource" "validate_admin_subnet_count_matches_availability_zone_count" {
-  count = "${local._admin_subnets_count_minus_az_count == 0 ? 0 : -1}"
+  count = local._admin_subnets_count_minus_az_count == 0 ? 0 : -1
 }
