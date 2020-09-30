@@ -87,6 +87,9 @@ locals {
   }
 
   tags             = merge(local.default_tags, var.extra_tags_global)
+  admin_subnet_tags = merge(local.tags, var.extra_tags_admin_subnet)
+  private_subnet_tags = merge(local.tags, var.extra_tags_private_subnet)
+  public_subnet_tags = merge(local.tags, var.extra_tags_public_subnet)
   avail_zones_list = split(",", var.availability_zones)
 }
 

@@ -6,11 +6,10 @@ resource "aws_subnet" "admin" {
   cidr_block        = local.admin_cidr_subnets[count.index]
   availability_zone = local.avail_zones_list[count.index]
   tags = merge(
-    local.tags,
+    local.admin_subnet_tags,
     {
       "Name" = "Admin Subnet"
-    },
-    var.extra_tags_admin_subnet
+    }
   )
 }
 
@@ -27,11 +26,10 @@ resource "aws_subnet" "public" {
   cidr_block        = local.public_cidr_subnets[count.index]
   availability_zone = local.avail_zones_list[count.index]
   tags = merge(
-    local.tags,
+    local.public_subnet_tags,
     {
       "Name" = "Public Subnet"
-    },
-    var.extra_tags_public_subnet
+    }
   )
 }
 
@@ -48,11 +46,10 @@ resource "aws_subnet" "private" {
   cidr_block        = local.private_cidr_subnets[count.index]
   availability_zone = local.avail_zones_list[count.index]
   tags = merge(
-    local.tags,
+    local.private_subnet_tags,
     {
       "Name" = "Private Subnet"
-    },
-    var.extra_tags_private_subnet
+    }
   )
 }
 
