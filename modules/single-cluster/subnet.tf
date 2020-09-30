@@ -1,7 +1,7 @@
 # Subnet creation
 ## Admin
 resource "aws_subnet" "admin" {
-  count             = local._count_of_availability_zones
+  count             = var.enable_admin_subnet == false ? 0 : local._count_of_availability_zones
   vpc_id            = aws_vpc.kube_vpc.id
   cidr_block        = local.admin_cidr_subnets[count.index]
   availability_zone = local.avail_zones_list[count.index]
@@ -18,7 +18,7 @@ output "aws_subnet_admin_ids" {
 }
 
 resource "aws_route_table_association" "admin" {
-  count          = local._count_of_availability_zones
+  count          = var.enable_admin_subnet == false ? 0 : local._count_of_availability_zones
   subnet_id      = element(aws_subnet.admin.*.id, count.index)
   route_table_id = element(aws_route_table.private.*.id, count.index)
 }

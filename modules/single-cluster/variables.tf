@@ -16,6 +16,13 @@ variable "private_subnets_list" {
 variable "admin_subnets_list" {
   type        = list(string)
   description = "A list of the subnets to create for admin subnets"
+  default     = null
+}
+
+variable "enable_admin_subnet" {
+  type = bool
+  description = "A true/false value to enable the admin subnets"
+  default = true
 }
 
 variable "vpc_name" {
@@ -73,7 +80,7 @@ locals {
   _count_of_availability_zones          = length(local.avail_zones_list)
   _public_subnets_count_minus_az_count  = length(var.public_subnets_list) - local._count_of_availability_zones
   _private_subnets_count_minus_az_count = length(var.private_subnets_list) - local._count_of_availability_zones
-  _admin_subnets_count_minus_az_count   = length(var.admin_subnets_list) - local._count_of_availability_zones
+  _admin_subnets_count_minus_az_count   = var.enable_admin_subnet == false ? 0 : length(var.admin_subnets_list) - local._count_of_availability_zones
 }
 
 resource "null_resource" "validate_public_subnet_count_matches_availability_zone_count" {
