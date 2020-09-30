@@ -13,10 +13,6 @@ resource "aws_subnet" "admin" {
   )
 }
 
-output "aws_subnet_admin_ids" {
-  value = [aws_subnet.admin.*.id]
-}
-
 resource "aws_route_table_association" "admin" {
   count          = var.enable_admin_subnet == false ? 0 : local._count_of_availability_zones
   subnet_id      = element(aws_subnet.admin.*.id, count.index)
@@ -37,10 +33,6 @@ resource "aws_subnet" "public" {
   )
 }
 
-output "aws_subnet_public_ids" {
-  value = [aws_subnet.public.*.id]
-}
-
 resource "aws_route_table_association" "public" {
   count          = local._count_of_availability_zones
   subnet_id      = element(aws_subnet.public.*.id, count.index)
@@ -59,10 +51,6 @@ resource "aws_subnet" "private" {
       "Name" = "Private Subnet"
     },
   )
-}
-
-output "aws_subnet_private_ids" {
-  value = [aws_subnet.private.*.id]
 }
 
 resource "aws_route_table_association" "private" {

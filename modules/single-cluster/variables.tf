@@ -20,9 +20,9 @@ variable "admin_subnets_list" {
 }
 
 variable "enable_admin_subnet" {
-  type = bool
+  type        = bool
   description = "A true/false value to enable the admin subnets"
-  default = true
+  default     = true
 }
 
 variable "vpc_name" {
