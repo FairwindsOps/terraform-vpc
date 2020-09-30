@@ -10,6 +10,7 @@ resource "aws_subnet" "admin" {
     {
       "Name" = "Admin Subnet"
     },
+    var.extra_tags_admin_subnet
   )
 }
 
@@ -30,6 +31,7 @@ resource "aws_subnet" "public" {
     {
       "Name" = "Public Subnet"
     },
+    var.extra_tags_public_subnet
   )
 }
 
@@ -50,6 +52,7 @@ resource "aws_subnet" "private" {
     {
       "Name" = "Private Subnet"
     },
+    var.extra_tags_private_subnet
   )
 }
 
