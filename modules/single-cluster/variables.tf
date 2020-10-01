@@ -51,6 +51,7 @@ variable "vpc_enable_classiclink" {
   default = "false"
 }
 
+
 ## Tagging Settings
 variable "extra_tags_global" {
   type        = map(string)
@@ -58,21 +59,18 @@ variable "extra_tags_global" {
   default     = {}
 }
 
-## Tagging Settings
 variable "extra_tags_admin_subnet" {
   type        = map(string)
   description = "Map of tags to apply in addition to already predefined tags of the module."
   default     = {}
 }
 
-## Tagging Settings
 variable "extra_tags_public_subnet" {
   type        = map(string)
   description = "Map of tags to apply in addition to already predefined tags of the module."
   default     = {}
 }
 
-## Tagging Settings
 variable "extra_tags_private_subnet" {
   type        = map(string)
   description = "Map of tags to apply in addition to already predefined tags of the module."
