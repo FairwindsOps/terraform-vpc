@@ -16,6 +16,13 @@ variable "private_subnets_list" {
 variable "admin_subnets_list" {
   type        = list(string)
   description = "A list of the subnets to create for admin subnets"
+  default     = null
+}
+
+variable "enable_admin_subnet" {
+  type        = bool
+  description = "A true/false value to enable the admin subnets"
+  default     = true
 }
 
 variable "vpc_name" {
@@ -45,7 +52,28 @@ variable "vpc_enable_classiclink" {
 }
 
 ## Tagging Settings
-variable "extra_tags" {
+variable "extra_tags_global" {
+  type        = map(string)
+  description = "Map of tags to apply in addition to already predefined tags of the module."
+  default     = {}
+}
+
+## Tagging Settings
+variable "extra_tags_admin_subnet" {
+  type        = map(string)
+  description = "Map of tags to apply in addition to already predefined tags of the module."
+  default     = {}
+}
+
+## Tagging Settings
+variable "extra_tags_public_subnet" {
+  type        = map(string)
+  description = "Map of tags to apply in addition to already predefined tags of the module."
+  default     = {}
+}
+
+## Tagging Settings
+variable "extra_tags_private_subnet" {
   type        = map(string)
   description = "Map of tags to apply in addition to already predefined tags of the module."
   default     = {}
@@ -58,7 +86,10 @@ locals {
     "Author"     = "Fairwinds"
   }
 
-  tags             = merge(local.default_tags, var.extra_tags)
+  tags             = merge(local.default_tags, var.extra_tags_global)
+  admin_subnet_tags = merge(local.tags, var.extra_tags_admin_subnet)
+  private_subnet_tags = merge(local.tags, var.extra_tags_private_subnet)
+  public_subnet_tags = merge(local.tags, var.extra_tags_public_subnet)
   avail_zones_list = split(",", var.availability_zones)
 }
 
@@ -73,7 +104,7 @@ locals {
   _count_of_availability_zones          = length(local.avail_zones_list)
   _public_subnets_count_minus_az_count  = length(var.public_subnets_list) - local._count_of_availability_zones
   _private_subnets_count_minus_az_count = length(var.private_subnets_list) - local._count_of_availability_zones
-  _admin_subnets_count_minus_az_count   = length(var.admin_subnets_list) - local._count_of_availability_zones
+  _admin_subnets_count_minus_az_count   = var.enable_admin_subnet == false ? 0 : length(var.admin_subnets_list) - local._count_of_availability_zones
 }
 
 resource "null_resource" "validate_public_subnet_count_matches_availability_zone_count" {
