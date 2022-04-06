@@ -184,6 +184,11 @@ variable "private_route_table_tags" {
   default = {}
 }
 
+variable "elastic_ip_tags" {
+  description = "Tags to apply to elastic IP addresses"
+  default = {}
+}
+
 variable "global_tags" {
   description = "AWS tags that will be added to all resources managed herein"
   type = map(string)
