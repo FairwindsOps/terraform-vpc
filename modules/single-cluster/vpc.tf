@@ -59,8 +59,13 @@ resource "aws_nat_gateway" "nat_gateway" {
 
 resource "aws_eip" "mod_nat" {
   count = length(local.avail_zones_list)
-  tags  = local.tags
-  vpc   = true
+  tags = merge(
+    local.tags,
+    {
+      "Name" = "${local.eip_name_prefix}${var.vpc_name}_${local.avail_zones_list[count.index]}"
+    },
+  )
+  vpc = true
 }
 
 output "aws_eip_nat_ips" {

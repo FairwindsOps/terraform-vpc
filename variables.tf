@@ -165,30 +165,30 @@ POLICY
 
 variable "s3_vpc_endpoint_route_table_ids" {
   description = "By default routes to the s3 endpoint are added for private subnet route tables. Pass additional route table ids that require routes."
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 variable "internet_gateway_tags" {
   description = "Tags to apply to the internet gateway"
-  default = {}
+  default     = {}
 }
 
 variable "public_route_table_tags" {
   description = "Tags to apply to the public route table"
-  default = {}
+  default     = {}
 }
 
 variable "private_route_table_tags" {
   description = "Tags to apply to the private route table"
-  default = {}
+  default     = {}
 }
 
 variable "global_tags" {
   description = "AWS tags that will be added to all resources managed herein"
-  type = map(string)
+  type        = map(string)
   default = {
-    "Author" = "Fairwinds"
+    "Author"     = "Fairwinds"
     "Managed By" = "Terraform"
   }
 }
