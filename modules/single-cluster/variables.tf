@@ -79,18 +79,26 @@ variable "extra_tags_private_subnet" {
   default     = {}
 }
 
+## Tagging Settings
+variable "elastic_ip_name_prefix" {
+  type        = string
+  description = "The name prefix for each eip."
+  default     = ""
+}
+
 # Local Vars
 locals {
+  eip_name_prefix = length(var.elastic_ip_name_prefix) > 0 ? "${var.elastic_ip_name_prefix}-" : ""
   default_tags = {
     "ManagedVia" = "Terraform"
     "Author"     = "Fairwinds"
   }
 
-  tags             = merge(local.default_tags, var.extra_tags_global)
-  admin_subnet_tags = merge(local.tags, var.extra_tags_admin_subnet)
+  tags                = merge(local.default_tags, var.extra_tags_global)
+  admin_subnet_tags   = merge(local.tags, var.extra_tags_admin_subnet)
   private_subnet_tags = merge(local.tags, var.extra_tags_private_subnet)
-  public_subnet_tags = merge(local.tags, var.extra_tags_public_subnet)
-  avail_zones_list = split(",", var.availability_zones)
+  public_subnet_tags  = merge(local.tags, var.extra_tags_public_subnet)
+  avail_zones_list    = split(",", var.availability_zones)
 }
 
 # Usage validation
