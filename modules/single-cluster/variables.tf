@@ -47,10 +47,6 @@ variable "vpc_enable_dns_hostnames" {
   default = "true"
 }
 
-variable "vpc_enable_classiclink" {
-  default = "false"
-}
-
 ## Tagging Settings
 variable "extra_tags_global" {
   type        = map(string)
