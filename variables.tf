@@ -45,10 +45,6 @@ variable "vpc_enable_dns_hostnames" {
   default = "true"
 }
 
-variable "vpc_enable_classiclink" {
-  default = "false"
-}
-
 variable "admin_subnet_parent_cidr" {
   description = "parent CIDR for the administrative subnets"
   default     = ".0.0/19"
@@ -149,7 +145,7 @@ variable "s3_vpc_endpoint_policy" {
   default     = <<POLICY
 {
     "Statement": [
-        {   
+        {
             "Sid": "FullAccess",
             "Action": "*",
             "Effect": "Allow",
